@@ -1,4 +1,4 @@
-const data = require('../data/entries.json');
+const data = require('./entries.json');
 
 exports.handler = async function(event, context, callback) {
   const range = event.queryStringParameters.q;

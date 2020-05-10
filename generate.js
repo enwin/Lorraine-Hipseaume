@@ -26,5 +26,5 @@ const csvParse = require( 'csv-parse' );
   })
   .catch(() => ([]));
 
-  await fs.writeFile( `${__dirname}/data/entries.json`, JSON.stringify(data, null, 2), 'utf8' );
+  await fs.writeFile( `${__dirname}/functions/entries.json`, JSON.stringify(data, null, 2), 'utf8' );
 })()

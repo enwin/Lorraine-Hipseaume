@@ -106,4 +106,4 @@ dist
 # Local Netlify folder
 .netlify
 
-data/entries.json
+entries.json
