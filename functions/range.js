@@ -6,16 +6,21 @@ exports.handler = async function(event, context, callback) {
   const range = event.queryStringParameters.q;
   const page = event.queryStringParameters.page ? event.queryStringParameters.page-1 : 0;
 
-  if( !range ){
+  if( range === undefined ){
     callback(null, {
       statusCode: 403,
       body: ''
     });
   }
 
-  const [start, end] = range.split('-');
+  let [start, end] = range.split('-');
 
-  const results = data.filter(entry => entry.annais >= start && entry.annais <= end).sort((a, b) => a.annais > b.annais ? 1 : a.annais < b.annais ? -1 : 0);
+  // query names with no annais
+  if( start === '' && !end ){
+    start = undefined;
+  }
+
+  const results = data.filter(entry => (entry.annais >= start && entry.annais <= end) || entry.annais === start ).sort((a, b) => a.annais > b.annais ? 1 : a.annais < b.annais ? -1 : 0);
 
   const response = {
     results: results.slice(paging * page, (paging * page) + paging),
