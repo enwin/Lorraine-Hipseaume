@@ -13,7 +13,7 @@ const csvParse = require( 'csv-parse' );
           return value.trim();
         }
 
-        return parseInt(value, 10);
+        return value !== 'XXXX' ? parseInt(value, 10) : undefined;
       }
     }, (err, data) => {
       if( err ){
