@@ -1,31 +1,35 @@
 const fs = require( 'fs' ).promises;
 const csvParse = require( 'csv-parse' );
 
-(async () => {
-  const csvData = await fs.readFile(`${__dirname}/data/nat.csv`, 'utf8');
+const generateNames = (names) => {
+  return names.map(async (name) => {
+    const csvData = await fs.readFile(`${__dirname}/data/${name}.csv`, 'utf8');
 
-  const data = await new Promise((resolve, reject) => {
-    csvParse(csvData, {
-      columns: true,
-      cast(value, context) {
-        const formatedValue = parseInt(value, 10);
+    const data = await new Promise((resolve, reject) => {
+      csvParse(csvData, {
+        columns: true,
+        cast(value, context) {
+          const formatedValue = parseInt(value, 10);
 
-        if( isNaN(formatedValue) ){
-          return value.trim();
+          if( context.header || isNaN(formatedValue) ){
+            return value.trim();
+          }
+
+          return formatedValue;
+        }
+      }, (err, data) => {
+        if( err ){
+          reject(err);
+          return;
         }
 
-        return formatedValue;
-      }
-    }, (err, data) => {
-      if( err ){
-        reject(err);
-        return;
-      }
-
-      resolve(data);
+        resolve(data);
+      })
     })
-  })
-  .catch(() => ([]));
+    .catch(() => ([]));
 
-  await fs.writeFile( `${__dirname}/functions/entries.json`, JSON.stringify(data, null, 2), 'utf8' );
-})()
+    return fs.writeFile( `${__dirname}/functions/${name}.json`, JSON.stringify(data, null, 2), 'utf8' );
+  });
+}
+
+generateNames(['firstnames', 'lastnames']);

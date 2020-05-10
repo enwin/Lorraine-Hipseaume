@@ -1,44 +1,28 @@
-const data = require('./entries.json');
+const lastnames = require('./lastnames.json');
+const firstnames = require('./firstnames.json');
 
-const paging = 50;
-
-const filterDedupe = (data) => {
-  const deduped = data.reduce((acc, entry) => {
-    const existingIndex = acc.findIndex(({sex, prenom_usuel}) => sex === entry.sex && prenom_usuel === entry.prenom_usuel );
-
-    if( existingIndex >= 0 ){
-      const existingEntry = acc[ existingIndex];
-
-      if( !existingEntry.annee_naissance.includes(entry.annee_naissance) ){
-        existingEntry.annee_naissance.push( entry.annee_naissance );
-      }
-
-      existingEntry.annee_naissance.sort();
-
-      acc.splice(existingIndex, 1, {
-        ...existingEntry,
-        nombre: existingEntry.nombre + entry.nombre,
-        annee_naissance: existingEntry.annee_naissance,
-      });
-    }
-    else {
-      acc.push( {
-        ...entry,
-        annee_naissance: [entry.annee_naissance]
-      } );
-    }
-    return acc;
-  }, []);
-
-  return Promise.resolve(deduped);
-};
+const ranges = [
+  [1891, 1900],
+  [1901, 1910],
+  [1911, 1920],
+  [1921, 1930],
+  [1931, 1940],
+  [1941, 1950],
+  [1951, 1960],
+  [1961, 1970],
+  [1971, 1980],
+  [1981, 1990],
+  [1991, 2000],
+  [2001, 2010],
+  [2011, 2020],
+]
 
 const filterRandom = (data) => {
   const filtered = [];
 
   const pick = () => {
     const entriesCount = data.length - 1;
-    const entry = data.splice(Math.floor(Math.random() * entriesCount), 1);
+    const entry = data.splice(Math.floor(Math.random() * entriesCount), 1)[0];
 
     return entry;
   }
@@ -55,7 +39,41 @@ const filterRandom = (data) => {
 const filterRange = (data, range) => {
   const [start, end] = range.split('-');
 
-  return Promise.resolve( data.filter(entry => entry.annee_naissance >= start && entry.annee_naissance <= end ) );
+  const currentRanges = ranges.map(([rangeStart, rangeEnd]) => {
+    if( start <= rangeEnd && end >= rangeStart ){
+      return `${rangeStart}-${rangeEnd}`;
+    }
+  }).filter(Boolean);
+
+  const result = data.filter(entry => {
+    const matchingRange = currentRanges.some(range => {
+      return entry[range] && entry[range] !== 0;
+    })
+
+    return matchingRange || entry[ 'xxxx-xxxx' ] !== 0;
+  });
+
+  return Promise.resolve( result );
+}
+
+const filterRangeLastnames = (data, range) => {
+  const [start, end] = range.split('-');
+
+  const currentRanges = ranges.map(([rangeStart, rangeEnd]) => {
+    if( start <= rangeEnd && end >= rangeStart ){
+      return `${rangeStart}-${rangeEnd}`;
+    }
+  }).filter(Boolean);
+
+  const result = data.filter(entry => {
+    const matchingRange = currentRanges.some(range => {
+      return entry[range] && entry[range] !== 0;
+    })
+
+    return matchingRange || entry[ '1991-2000' ] !== 0;
+  });
+
+  return Promise.resolve( result );
 }
 
 
@@ -70,9 +88,19 @@ exports.handler = async function(event, context, callback) {
     });
   }
 
-  const results = await filterRange( data, range )
-    .then(filterDedupe)
+  const lastNames = await filterRangeLastnames( lastnames, range )
     .then(filterRandom);
+  const firstNames = await filterRange( firstnames, range )
+    .then(filterRandom);
+
+
+  const results = firstNames.map(({sexe, prenom_usuel}, index) => {
+    return {
+      sexe,
+      prenom: prenom_usuel,
+      nom: lastNames[index].nom,
+    }
+  });
 
   const response = {
     results,
@@ -81,6 +109,7 @@ exports.handler = async function(event, context, callback) {
 
   callback(null, {
     statusCode: 200,
+    headers: { 'content-type': 'application/json; charset=utf-8' },
     body: JSON.stringify(response, null, 2),
   });
 }
