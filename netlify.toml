@@ -1,0 +1,8 @@
+# example netlify.toml
+[build]
+  command = "npm run build"
+  functions = "functions"
+  publish = "."
+
+[build.environment]
+  AWS_LAMBDA_JS_RUNTIME = "nodejs12.x"

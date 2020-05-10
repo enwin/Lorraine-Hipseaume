@@ -1,0 +1,14 @@
+{
+  "name": "name-generator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "node generate.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "csv-parse": "^4.9.0"
+  }
+}
