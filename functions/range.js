@@ -9,17 +9,16 @@ const filterDedupe = (data) => {
     if( existingIndex >= 0 ){
       const existingEntry = acc[ existingIndex];
 
-      const annee_naissance = [
-        ...existingEntry.annee_naissance,
-        entry.annee_naissance
-      ];
+      if( !existingEntry.annee_naissance.includes(entry.annee_naissance) ){
+        existingEntry.annee_naissance.push( entry.annee_naissance );
+      }
 
-      annee_naissance.sort();
+      existingEntry.annee_naissance.sort();
 
       acc.splice(existingIndex, 1, {
         ...existingEntry,
         nombre: existingEntry.nombre + entry.nombre,
-        annee_naissance,
+        annee_naissance: existingEntry.annee_naissance,
       });
     }
     else {
