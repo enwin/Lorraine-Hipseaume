@@ -6,14 +6,15 @@ const csvParse = require( 'csv-parse' );
 
   const data = await new Promise((resolve, reject) => {
     csvParse(csvData, {
-      delimiter: ';',
       columns: true,
       cast(value, context) {
-        if(context.header || context.column === 'preusuel'){
+        const formatedValue = parseInt(value, 10);
+
+        if( isNaN(formatedValue) ){
           return value.trim();
         }
 
-        return value !== 'XXXX' ? parseInt(value, 10) : undefined;
+        return formatedValue;
       }
     }, (err, data) => {
       if( err ){
