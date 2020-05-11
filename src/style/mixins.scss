@@ -1,0 +1,139 @@
+// Convert pixels to ems
+@function em( $size ) {
+  @return ( $size * 1em );
+}
+
+// Convert pixels to rems
+@function rem( $size ) {
+  @return ( $size / 16 * 1rem );
+}
+
+
+// Hide only visually, but have it available for screenreaders
+@mixin hide() {
+  border: 0;
+  clip: rect( 0 0 0 0 );
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+@mixin hide-reset() {
+  clip: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  position: static;
+  width: auto;
+}
+
+
+@mixin interact() {
+  -webkit-tap-highlight-color: rgba( black, 0 );
+
+  &:focus {
+    outline: none;
+  }
+
+  [data-input="mouse"] &:hover,
+  [data-input="keyboard"] &:focus,
+  [data-input="touch"] &:active {
+    @content;
+  }
+}
+
+
+@mixin title-level( $size, $height, $spacing: false ) {
+  font-size: rem( $size );
+  line-height: ( $height / $size );
+
+  @if $spacing {
+    letter-spacing: em( $spacing / $size );
+  }
+}
+
+@mixin title-separator( $align, $color: currentColor ) {
+  $separator-height: 4;
+  $separator-width: 64;
+  $separator-spacing: 16;
+  $title-spacing: 32;
+  $pos: $align;
+  $pct: 0;
+
+
+  @if $align == center {
+    $pos: left;
+    $pct: 50%;
+  }
+
+  margin-bottom: rem( $title-spacing );
+  padding-bottom: rem( $separator-spacing + $separator-height );
+  position: relative;
+
+  &::after {
+    background-color: $color;
+    bottom: 0;
+    content: "";
+    display: inline-block;
+    position: absolute;
+    height: rem( $separator-height );
+    #{$pos}: $pct;
+    width: rem( $separator-width );
+
+    @if $align == center {
+      margin-left: rem( $separator-width / -2 );
+    }
+  }
+}
+
+@mixin triangle($direction, $sizeH, $sizeV, $color) {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  -moz-transform: scale( 0.9999 );
+
+  @if $direction == top {
+    border-width: 0 $sizeV $sizeH $sizeV;
+    border-color: transparent transparent $color transparent;
+  }
+
+  @if $direction == bottom {
+    border-width: $sizeV $sizeH 0 $sizeV;
+    border-color: $color transparent transparent transparent;
+  }
+
+  @if $direction == left {
+    border-width: $sizeV $sizeH $sizeV 0;
+    border-color: transparent $color transparent transparent;
+  }
+
+  @if $direction == right {
+    border-width: $sizeV 0 $sizeV $sizeH;
+    border-color: transparent transparent transparent $color;
+  }
+
+  @if $direction == topright {
+    border-width: 0 $sizeH $sizeV 0;
+    border-color: transparent $color transparent transparent;
+  }
+
+  @if $direction == bottomright {
+    border-width: 0 0 $sizeH $sizeV;
+    border-color: transparent transparent $color transparent;
+  }
+
+  @if $direction == bottomleft {
+    border-width: $sizeH 0 0 $sizeV;
+    border-color: transparent transparent transparent $color;
+  }
+
+  @if $direction == topleft {
+    border-width: $sizeH $sizeV 0 0;
+    border-color: $color transparent transparent transparent;
+  }
+}
