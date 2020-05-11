@@ -1,4 +1,4 @@
-const rangeEndpoint = '/.netlify/functions/range?q=';
+const rangeEndpoint = '/.netlify/functions/range';
 
 class Names {
   constructor() {
@@ -15,19 +15,19 @@ class Names {
     };
 
     this.ranges = [
-      '1891—1900',
-      '1901—1910',
-      '1911—1920',
-      '1921—1930',
-      '1931—1940',
-      '1941—1950',
-      '1951—1960',
-      '1961—1970',
-      '1971—1980',
-      '1981—1990',
-      '1991—2000',
-      '2001—2010',
-      '2011—2020',
+      '1891-1900',
+      '1901-1910',
+      '1911-1920',
+      '1921-1930',
+      '1931-1940',
+      '1941-1950',
+      '1951-1960',
+      '1961-1970',
+      '1971-1980',
+      '1981-1990',
+      '1991-2000',
+      '2001-2010',
+      '2011-2020',
     ];
 
     this.bind();
@@ -36,13 +36,13 @@ class Names {
   bind() {
     this.refs.form.addEventListener('submit', (event) => {
       event.preventDefault();
-      this.handleRange(event);
+      this.submitForm(event);
     });
     this.refs.range.addEventListener('input', (event) => {
       window.clearTimeout(this.fetchTimeout);
 
       this.fetchTimeout = window.setTimeout(() => {
-        this.handleRange(event);
+        this.submitForm(event);
       }, 300);
     });
   }
@@ -55,10 +55,16 @@ class Names {
     this.refs.list.innerHTML = listItems.join('\n');
   }
 
-  async handleRange() {
-    this.range = this.ranges[+this.refs.range.value];
+  async submitForm() {
+    const data = new FormData(this.refs.form);
 
-    const endpoint = `${rangeEndpoint}${this.range}`;
+    this.range = this.ranges[+data.get('q')];
+
+    data.set('q', this.range);
+
+    const queryString = new URLSearchParams(data).toString();
+
+    const endpoint = `${rangeEndpoint}?${queryString}`;
 
     const { results } = await window
       .fetch(endpoint)

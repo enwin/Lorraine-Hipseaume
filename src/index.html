@@ -10,10 +10,30 @@
 
 <body>
   <h1>50 noms et prénoms</h1>
-  <p>français et aléatoires sur la période <span id="decade-display">2011—2020</span></p>
+  <p>français et aléatoires sur la période <span id="decade-display">2011-2020</span></p>
   <form id="list-names">
     <label for="decade">Décénie</label>
-    <input type="range" name="decade" id="decade" min="0" max="12" step="1" value="12" />
+    <input type="range" name="q" id="decade" min="0" max="12" step="1" value="12" />
+    <fieldset>
+      <legend>Civilité</legend>
+      <input type="radio" name="title" id="title-0" value="0" checked />
+      <label for="title-0">Toutes</label>
+      <input type="radio" name="title" id="title-1" value="1" />
+      <label for="title-1">Monsieur</label>
+      <input type="radio" name="title" id="title-2" value="2" />
+      <label for="title-2">Madame</label>
+    </fieldset>
+    <fieldset>
+      <legend>Rareté</legend>
+      <input type="radio" name="rarity" id="rarity-common" value="0" checked />
+      <label for="rarity-common">Commun</label>
+      <input type="radio" name="rarity" id="rarity-little-less-common" value="1" />
+      <label for="rarity-little-less-common">Un peu moins Commun</label>
+      <input type="radio" name="rarity" id="rarity-less-common" value="2" />
+      <label for="rarity-less-common">Moins Commun</label>
+      <input type="radio" name="rarity" id="rarity-all" value="3" />
+      <label for="rarity-all">Tous le monde</label>
+    </fieldset>
     <button type="submit">Rafraichir</button>
   </form>
 

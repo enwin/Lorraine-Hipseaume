@@ -15,7 +15,12 @@ const ranges = [
   [1991, 2000],
   [2001, 2010],
   [2011, 2020],
-]
+];
+
+const rarities = {
+  lastNames: [500, 100, 50, 0],
+  firstNames: [5000, 1000, 500, 0],
+};
 
 const filterRandom = (data) => {
   const filtered = [];
@@ -25,91 +30,107 @@ const filterRandom = (data) => {
     const entry = data.splice(Math.floor(Math.random() * entriesCount), 1)[0];
 
     return entry;
-  }
+  };
 
-  while (filtered.length < 50 && data.length){
+  while (filtered.length < 50 && data.length) {
     filtered.push(pick());
   }
 
-
   return Promise.resolve(filtered);
-
 };
 
-const filterRange = (data, range) => {
+const filterRange = (data, { range, rarity, title }) => {
   const [start, end] = range.split('-');
 
-  const currentRanges = ranges.map(([rangeStart, rangeEnd]) => {
-    if( start <= rangeEnd && end >= rangeStart ){
-      return `${rangeStart}-${rangeEnd}`;
-    }
-  }).filter(Boolean);
-
-  const result = data.filter(entry => {
-    const matchingRange = currentRanges.some(range => {
-      return entry[range] && entry[range] !== 0;
+  const currentRanges = ranges
+    .map(([rangeStart, rangeEnd]) => {
+      if (start <= rangeEnd && end >= rangeStart) {
+        return `${rangeStart}-${rangeEnd}`;
+      }
     })
+    .filter(Boolean);
 
-    return matchingRange || entry[ 'xxxx-xxxx' ] !== 0;
+  const result = data.filter((entry) => {
+    if (title && entry.sexe !== title) {
+      return false;
+    }
+
+    const matchingRange = currentRanges.some((range) => {
+      return entry[range] && entry[range] >= rarity;
+    });
+
+    return matchingRange || entry['xxxx-xxxx'] >= rarity;
   });
 
-  return Promise.resolve( result );
-}
+  return Promise.resolve(result);
+};
 
-const filterRangeLastnames = (data, range) => {
+const filterRangeLastnames = (data, { range, rarity }) => {
   const [start, end] = range.split('-');
 
-  const currentRanges = ranges.map(([rangeStart, rangeEnd]) => {
-    if( start <= rangeEnd && end >= rangeStart ){
-      return `${rangeStart}-${rangeEnd}`;
-    }
-  }).filter(Boolean);
-
-  const result = data.filter(entry => {
-    const matchingRange = currentRanges.some(range => {
-      return entry[range] && entry[range] !== 0;
+  const currentRanges = ranges
+    .map(([rangeStart, rangeEnd]) => {
+      if (start <= rangeEnd && end >= rangeStart) {
+        return `${rangeStart}-${rangeEnd}`;
+      }
     })
+    .filter(Boolean);
 
-    return matchingRange || entry[ '1991-2000' ] !== 0;
+  const result = data.filter((entry) => {
+    const matchingRange = currentRanges.some((range) => {
+      return entry[range] && entry[range] >= rarity;
+    });
+
+    return matchingRange || entry['1991-2000'] >= rarity;
   });
 
-  return Promise.resolve( result );
-}
+  return Promise.resolve(result);
+};
 
-
-exports.handler = async function(event, context, callback) {
+exports.handler = async function (event, context, callback) {
   const range = event.queryStringParameters.q;
-  const page = event.queryStringParameters.page ? event.queryStringParameters.page-1 : 0;
+  const page = event.queryStringParameters.page
+    ? event.queryStringParameters.page - 1
+    : 0;
+  const title = event.queryStringParameters.title
+    ? +event.queryStringParameters.title
+    : 0;
+  const rarityLevel = event.queryStringParameters.rarity
+    ? +event.queryStringParameters.rarity
+    : 0;
 
-  if( !range ){
+  if (!range) {
     callback(null, {
       statusCode: 403,
-      body: ''
+      body: '',
     });
   }
 
-  const lastNames = await filterRangeLastnames( lastnames, range )
-    .then(filterRandom);
-  const firstNames = await filterRange( firstnames, range )
-    .then(filterRandom);
-
-
-  const results = firstNames.map(({sexe, prenom_usuel}, index) => {
+  const lastNames = await filterRangeLastnames(lastnames, {
+    range,
+    rarity: rarities.lastNames[rarityLevel],
+  }).then(filterRandom);
+  const firstNames = await filterRange(firstnames, {
+    range,
+    title,
+    rarity: rarities.firstNames[rarityLevel],
+  }).then(filterRandom);
+  const results = firstNames.map(({ sexe, prenom_usuel }, index) => {
     return {
       sexe,
       prenom: prenom_usuel,
       nom: lastNames[index].nom,
-    }
+    };
   });
 
   const response = {
     results,
-    total: results.length
-  }
+    total: results.length,
+  };
 
   callback(null, {
     statusCode: 200,
     headers: { 'content-type': 'application/json; charset=utf-8' },
     body: JSON.stringify(response, null, 2),
   });
-}
+};
