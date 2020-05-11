@@ -18,21 +18,21 @@ const ranges = [
 ];
 
 const rarities = {
-  lastNames: [500, 100, 50, 0],
-  firstNames: [5000, 1000, 500, 0],
+  lastNames: [500, 100, 50, 1],
+  firstNames: [5000, 1000, 500, 1],
 };
 
 const filterRandom = (data) => {
   const filtered = [];
+  const entriesCount = data.length - 1;
 
   const pick = () => {
-    const entriesCount = data.length - 1;
-    const entry = data.splice(Math.floor(Math.random() * entriesCount), 1)[0];
+    const entry = data[Math.floor(Math.random() * entriesCount)];
 
     return entry;
   };
 
-  while (filtered.length < 50 && data.length) {
+  while (filtered.length < 50) {
     filtered.push(pick());
   }
 
