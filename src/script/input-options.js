@@ -5,6 +5,7 @@ class InputOption {
     this.refs = {
       progress: this.el.querySelector('.progress span'),
       inputs: Array.from(this.el.querySelectorAll('input')),
+      actions: this.el.querySelector('.input-option-actions'),
     };
 
     this.bind();
@@ -12,6 +13,7 @@ class InputOption {
     this.data = {
       progressSize: undefined,
       progressIndex: undefined,
+      inputs: this.refs.inputs.length,
     };
 
     this.setProgressSize();
@@ -23,10 +25,28 @@ class InputOption {
     this.el.addEventListener('input', (event) => {
       this.updateProgress(event);
     });
+
+    this.refs.actions.addEventListener('click', (event) => {
+      this.changeOption(event.target);
+    });
+  }
+
+  changeOption(el) {
+    const increment = el.closest('.prev') ? -1 : +1;
+    const max = this.inputCount - 1;
+    let nextIndex = this.progressIndex + increment;
+
+    if (nextIndex > max) {
+      nextIndex = 0;
+    } else if (nextIndex < 0) {
+      nextIndex = max;
+    }
+
+    this.refs.inputs[nextIndex].click();
   }
 
   setProgressSize() {
-    this.progressSize = 100 / this.refs.inputs.length;
+    this.progressSize = 100 / this.inputCount;
   }
 
   updateProgress(event) {
@@ -43,10 +63,15 @@ class InputOption {
 
   set progressIndex(value) {
     this.data.progressIndex = value;
+
     this.el.style.setProperty(
       '--progress-index',
-      `${value * (100 / (this.refs.inputs.length - 1))}%`,
+      `${value * (100 / (this.inputCount - 1))}%`,
     );
+  }
+
+  get inputCount() {
+    return this.data.inputs;
   }
 
   get progressSize() {

@@ -1,0 +1,121 @@
+
+
+.input-option {
+  --progress-width: rem( 40 );
+  border: none;
+  padding: 0;
+
+  legend {
+    @include hide();
+  }
+
+  &:hover {
+    & .progress {
+      span {
+        &::before {
+          transform: scale(1, 1);
+        }
+      }
+    }
+  }
+
+  input[type=radio] {
+    @include hide();
+
+    &:not(:checked) + label {
+      @include hide();
+    }
+  }
+
+  .values {
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .progress {
+    position: relative;
+    height: 1px;
+    background-color: currentColor;
+    margin: rem( 8 ) 0 rem( 16 );
+    color: #465860;
+    padding: 0 calc( var(--progress-width) / 2 );
+
+    span {
+      position: relative;
+      display: block;
+
+      span {
+        position: absolute;
+        left: var(--progress-index, 0);
+        width: calc( var(--progress-width) + (var(--progress-width) / 2) );
+        height: rem( 5 );
+        top: -2px;
+        transition: left 0.3s ease;
+        transform: translateX(-50%);
+
+        &::before {
+          content: '';
+          border-radius: 2px;
+          display: block;
+          width: 100%;
+          height: 100%;
+          transform: scale(1, 0);
+          background-color: currentColor;
+          transition: transform 0.3s ease;
+        }
+      }
+    }
+  }
+}
+
+.input-option-title {
+  font-size: rem( 20 );
+}
+
+.input-option-wrapper {
+  position: relative;
+
+  [data-input="keyboard"] &:focus-within + .progress{
+    span {
+      &::before {
+        transform: scale(1, 1);
+      }
+    }
+  }
+}
+
+.input-option-actions {
+  position: absolute;
+  top: 50%;
+  right: rem( -7 );
+  width: rem( 32*3 );
+  display: flex;
+  justify-content: space-between;
+  transform: translateY( -50% );
+}
+
+.input-option-action {
+  background: none;
+  border: none;
+  padding: rem( 8 );
+  transition: transform 0.3s ease;
+
+  svg{
+    height: rem( 24 );
+    width: rem( 24 );
+  }
+
+  span {
+    @include hide();
+  }
+
+  &.prev {
+    svg {
+      transform: scale( -1, 1 );
+    }
+  }
+
+  @include interact() {
+    transform: scale( 1.4 );
+  }
+}
