@@ -9,7 +9,7 @@ class Names {
   constructor() {
     this.refs = {
       form: document.querySelector('form'),
-      list: document.querySelector('ul'),
+      list: document.querySelector('ul.list'),
       decade: document.getElementById('decade-display'),
       decadeTitle: document.querySelector('.input-option.decade p'),
     };

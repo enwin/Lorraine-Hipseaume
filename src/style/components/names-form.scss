@@ -41,24 +41,11 @@
 
   .footer {
     border-bottom: 1px solid #465860;
-    padding-bottom: rem( 16 );
-  }
+    padding-bottom: rem( 4 );
+    margin-top: rem( -12 );
 
-  [type=submit] {
-    background: none;
-    background-image: linear-gradient(90deg, currentColor, currentColor);
-    background-position: 0 calc( 100% - 1px);
-    background-repeat: repeat-x;
-    background-size: 100% 1px;
-    border: none;
-    font-size: rem( 20 );
-    padding: 0;
-    text-transform: uppercase;
-    transition: background 0.3s ease;
-
-    @include interact() {
-      background-position: 0 100%;
-      background-size: 100% 2px;
+    li {
+      margin: rem( 12 ) 0;
     }
   }
 }
