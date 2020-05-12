@@ -80,7 +80,11 @@ class InputOption {
 
   set progressSize(value) {
     this.data.progressSize = value;
-    this.el.style.setProperty('--progress-width', `${value}%`);
+
+    const delta = value + value / (this.inputCount - 1);
+
+    this.el.style.setProperty('--progress-shift', `${value}%`);
+    this.el.style.setProperty('--progress-width', `${delta}%`);
   }
 }
 

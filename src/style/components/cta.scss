@@ -1,0 +1,25 @@
+.cta {
+  background: none;
+  border: none;
+  display: inline-flex;
+  font-size: rem( 20 );
+  padding: 0;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background 0.3s ease;
+  vertical-align: top;
+}
+
+
+button.cta:not(:disabled),
+a.cta[href]{
+  background-image: linear-gradient(90deg, currentColor, currentColor);
+  background-position: 0 calc( 100% - 1px);
+  background-repeat: repeat-x;
+  background-size: 100% 1px;
+
+  @include interact() {
+    background-position: 0 100%;
+    background-size: 100% 2px;
+  }
+}

@@ -1,0 +1,9 @@
+footer[role="contentinfo"]{
+  border-top: 1px solid currentColor;
+  margin: rem(16) $gutter;
+  padding-top: rem( 6 );
+
+  li {
+    margin: rem( 12 ) 0;
+  }
+}

@@ -1,12 +1,33 @@
-
+$action-size: rem( 32*3 );
 
 .input-option {
-  --progress-width: rem( 40 );
+  --progress-shift: rem( 40 );
+  --progress-width: 0%;
+
   border: none;
   padding: 0;
 
   legend {
     @include hide();
+  }
+
+  label {
+    font-weight: 800;
+    font-size: rem(40);
+    font-variant-numeric: tabular-nums;
+    // font-size: min( #{(32 / 320 * 100vw)}, #{rem(40)});
+    width: 100%;
+
+    span {
+      @supports(background-clip: text){
+        background-clip: text;
+        color: transparent;
+      }
+      @supports(-webkit-background-clip: text){
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    }
   }
 
   &:hover {
@@ -38,16 +59,17 @@
     background-color: currentColor;
     margin: rem( 8 ) 0 rem( 16 );
     color: #465860;
-    padding: 0 calc( var(--progress-width) / 2 );
+    padding: 0 calc( var(--progress-shift) / 2 );
 
-    span {
+    > span {
       position: relative;
       display: block;
+      height: 100%;
 
       span {
         position: absolute;
         left: var(--progress-index, 0);
-        width: calc( var(--progress-width) + (var(--progress-width) / 2) );
+        width: calc( var(--progress-width));
         height: rem( 5 );
         top: -2px;
         transition: left 0.3s ease;
@@ -88,7 +110,7 @@
   position: absolute;
   top: 50%;
   right: rem( -7 );
-  width: rem( 32*3 );
+  width: $action-size;
   display: flex;
   justify-content: space-between;
   transform: translateY( -50% );

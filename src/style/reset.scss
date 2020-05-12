@@ -34,10 +34,13 @@ a {
 
 button {
   color: currentColor;
-  cursor: pointer;
   font-family: inherit;
   font-size: inherit;
   font-weight: inherit;
+
+  &:not(:disabled){
+    cursor: pointer;
+  }
 }
 
 img,

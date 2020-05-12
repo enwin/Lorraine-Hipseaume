@@ -1,23 +1,6 @@
 .names-form{
-  margin: $gutter;
+  margin: rem( 16 ) $gutter;
   text-transform: uppercase;
-
-  label {
-    font-weight: 800;
-    font-size: rem(40);
-    font-variant-numeric: tabular-nums;
-    width: 100%;
-    span {
-      @supports(background-clip: text){
-        background-clip: text;
-        color: transparent;
-      }
-      @supports(-webkit-background-clip: text){
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-    }
-  }
 
   .rarity {
     label {
