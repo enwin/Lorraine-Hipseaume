@@ -1,16 +1,21 @@
+import ui from './script/ui.js';
+import inputOptions from './script/input-options.js';
+
+inputOptions();
+
 const rangeEndpoint = '/.netlify/functions/range';
 
 class Names {
   constructor() {
     this.refs = {
       form: document.querySelector('form'),
-      range: document.querySelector('input[type="range"]'),
+      // range: document.querySelector('input[type="range"]'),
       list: document.querySelector('ul'),
       decade: document.getElementById('decade-display'),
     };
 
     this.data = {
-      range: this.refs.decade.textContent,
+      // range: this.refs.decade.textContent,
       results: [],
     };
 
@@ -38,13 +43,13 @@ class Names {
       event.preventDefault();
       this.submitForm(event);
     });
-    this.refs.range.addEventListener('input', (event) => {
-      window.clearTimeout(this.fetchTimeout);
+    // this.refs.range.addEventListener('input', (event) => {
+    //   window.clearTimeout(this.fetchTimeout);
 
-      this.fetchTimeout = window.setTimeout(() => {
-        this.submitForm(event);
-      }, 300);
-    });
+    //   this.fetchTimeout = window.setTimeout(() => {
+    //     this.submitForm(event);
+    //   }, 300);
+    // });
   }
 
   displayResults() {
@@ -57,10 +62,6 @@ class Names {
 
   async submitForm() {
     const data = new FormData(this.refs.form);
-
-    this.range = this.ranges[+data.get('q')];
-
-    data.set('q', this.range);
 
     const queryString = new URLSearchParams(data).toString();
 
@@ -84,7 +85,7 @@ class Names {
 
   set range(value) {
     this.data.range = value;
-    this.refs.decade.textContent = value;
+    // this.refs.decade.textContent = value;
   }
 
   get results() {

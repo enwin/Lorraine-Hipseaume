@@ -1,0 +1,24 @@
+@font-face {
+  font-family: "Barlow";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: local('Barlow Light'), local('Barlow-Light'), url( ./font/barlow/light.woff ) format( "woff" ), url( ./font/barlow/light.woff2 ) format( "woff2" );
+}
+
+@font-face {
+  font-family: "Barlow";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: local('Barlow ExtraBold'), local('Barlow-ExtraBold'), url( ./font/barlow/extrabold.woff ) format( "woff" ), url( ./font/barlow/extrabold.woff2 ) format( "woff2" );
+}
+
+
+@font-face {
+  font-family: "Jetbrains Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Jetbrains Mono'), local('Jetbrains-Mono'), url( ./font/jetbrains-mono/regular.woff ) format( "woff" ), url( ./font/jetbrains-mono/regular.woff2 ) format( "woff2" );
+}

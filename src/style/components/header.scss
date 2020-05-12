@@ -1,0 +1,10 @@
+header[role="banner"]{
+  padding: 0 $gutter;
+  text-transform: uppercase;
+
+  h1 {
+    font-size: rem( 40 );
+    padding-top: rem( 16 );
+    margin-bottom: rem( 16 );
+  }
+}

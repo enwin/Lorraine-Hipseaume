@@ -1,2 +1,11 @@
 @import "./style/mixins";
+@import './style/variables';
+@import "./style/fonts";
 @import "./style/reset";
+
+@import './style/base';
+
+
+@import './style/components/header';
+@import './style/components/names-form';
+@import './style/components/list';

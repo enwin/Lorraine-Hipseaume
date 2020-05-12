@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr" data-input="mouse">
 
 <head>
   <title>50 noms et prénoms</title>
@@ -9,87 +9,130 @@
 </head>
 
 <body>
-  <h1>50 noms et prénoms</h1>
-  <p>français et aléatoires sur la période <span id="decade-display">2011-2020</span></p>
-  <form id="list-names">
-    <label for="decade">Décénie</label>
-    <input type="range" name="q" id="decade" min="0" max="12" step="1" value="12" />
-    <fieldset>
-      <legend>Civilité</legend>
-      <input type="radio" name="title" id="title-0" value="0" checked />
-      <label for="title-0">Toutes</label>
-      <input type="radio" name="title" id="title-1" value="1" />
-      <label for="title-1">Monsieur</label>
-      <input type="radio" name="title" id="title-2" value="2" />
-      <label for="title-2">Madame</label>
-    </fieldset>
-    <fieldset>
-      <legend>Rareté</legend>
-      <input type="radio" name="rarity" id="rarity-common" value="0" checked />
-      <label for="rarity-common">Commun</label>
-      <input type="radio" name="rarity" id="rarity-little-less-common" value="1" />
-      <label for="rarity-little-less-common">Un peu moins Commun</label>
-      <input type="radio" name="rarity" id="rarity-less-common" value="2" />
-      <label for="rarity-less-common">Moins Commun</label>
-      <input type="radio" name="rarity" id="rarity-all" value="3" />
-      <label for="rarity-all">Tous le monde</label>
-    </fieldset>
-    <button type="submit">Rafraichir</button>
-  </form>
+  <header role="banner">
+    <h1>50 noms et prénoms</h1>
+  </header>
+  <main>
+    <form id="list-names" class="names-form">
+      <fieldset class="input-option rarity">
+        <legend>Rareté des noms</legend>
+        <p class="fieldset-word" aria-hidden="true">plutôt</p>
+        <div class="values">
+          <input type="radio" name="rarity" id="rarity-common" value="0" checked />
+          <label for="rarity-common"><span>communs</span></label>
+          <input type="radio" name="rarity" id="rarity-less-common" value="1" />
+          <label for="rarity-less-common"><span>moins communs</span></label>
+          <input type="radio" name="rarity" id="rarity-unusual" value="2" />
+          <label for="rarity-unusual"><span>rares</span></label>
+          <input type="radio" name="rarity" id="rarity-epic" value="3" />
+          <label for="rarity-epic"><span>épiques</span></label>
+        </div>
+        <div class="progress" role="presentation"><span><span></span></span></div>
+      </fieldset>
+      <fieldset class="input-option title">
+        <legend>Type de personnes</legend>
+        <p class="fieldset-word" aria-hidden="true">de</p>
+        <div class="values">
+          <input type="radio" name="title" id="title-0" value="0" checked />
+          <label for="title-0"><span>Français•es</span></label>
+          <input type="radio" name="title" id="title-1" value="1" />
+          <label for="title-1"><span>Français</span></label>
+          <input type="radio" name="title" id="title-2" value="2" />
+          <label for="title-2"><span>Françaises</span></label>
+        </div>
+        <div class="progress" role="presentation"><span><span></span></span></div>
+      </fieldset>
+      <fieldset class="input-option decade">
+        <legend>Décénnie de naissance</legend>
+        <p class="fieldset-word" aria-hidden="true">né•es entre</p>
+        <div class="values">
+          <input type="radio" name="q" id="decate-0" value="1891-1900" />
+          <label for="decate-0"><span>1891 et 1900</span></label>
+          <input type="radio" name="q" id="decate-1" value="1901-1910" />
+          <label for="decate-1"><span>1901 et 1910</span></label>
+          <input type="radio" name="q" id="decate-2" value="1911-1920" />
+          <label for="decate-2"><span>1911 et 1920</span></label>
+          <input type="radio" name="q" id="decate-3" value="1921-1930" />
+          <label for="decate-3"><span>1921 et 1930</span></label>
+          <input type="radio" name="q" id="decate-4" value="1931-1940" />
+          <label for="decate-4"><span>1931 et 1940</span></label>
+          <input type="radio" name="q" id="decate-5" value="1941-1950" />
+          <label for="decate-5"><span>1941 et 1950</span></label>
+          <input type="radio" name="q" id="decate-6" value="1951-1960" />
+          <label for="decate-6"><span>1951 et 1960</span></label>
+          <input type="radio" name="q" id="decate-7" value="1961-1970" />
+          <label for="decate-7"><span>1961 et 1970</span></label>
+          <input type="radio" name="q" id="decate-8" value="1971-1980" />
+          <label for="decate-8"><span>1971 et 1980</span></label>
+          <input type="radio" name="q" id="decate-9" value="1981-1990" />
+          <label for="decate-9"><span>1981 et 1990</span></label>
+          <input type="radio" name="q" id="decate-10" value="1991-2000" />
+          <label for="decate-10"><span>1991 et 2000</span></label>
+          <input type="radio" name="q" id="decate-11" value="2001-2010" />
+          <label for="decate-11"><span>2001 et 2010</span></label>
+          <input type="radio" name="q" id="decate-12" value="2011-2020" checked />
+          <label for="decate-12"><span>2011 et 2020</span></label>
+        </div>
+        <div class="progress" role="presentation"><span><span></span></span></div>
+      </fieldset>
+      <div class="footer">
+        <button type="submit">Rafraichir la liste</button>
+      </div>
+    </form>
 
-  <ul>
-    <li><output for="decade" form="list-names">Terrence Lescalmel</output></li>
-    <li><output for="decade" form="list-names">Celianne Coradin</output></li>
-    <li><output for="decade" form="list-names">Rahmi Mariee</output></li>
-    <li><output for="decade" form="list-names">Marie-Françoise Albourie</output></li>
-    <li><output for="decade" form="list-names">Krzysztof Limousis</output></li>
-    <li><output for="decade" form="list-names">Balkiss Mouiche</output></li>
-    <li><output for="decade" form="list-names">Linsay Puma</output></li>
-    <li><output for="decade" form="list-names">Boniface Lauduique</output></li>
-    <li><output for="decade" form="list-names">Haykal Tronc</output></li>
-    <li><output for="decade" form="list-names">Zafir Griman</output></li>
-    <li><output for="decade" form="list-names">Tayma Yvelain</output></li>
-    <li><output for="decade" form="list-names">Louen Paverne</output></li>
-    <li><output for="decade" form="list-names">Peinda Auric</output></li>
-    <li><output for="decade" form="list-names">Cindie Metrot</output></li>
-    <li><output for="decade" form="list-names">Mahieddine Oblinger</output></li>
-    <li><output for="decade" form="list-names">Hudayfa Leumaire</output></li>
-    <li><output for="decade" form="list-names">Nassila Barere</output></li>
-    <li><output for="decade" form="list-names">Percy Vittet</output></li>
-    <li><output for="decade" form="list-names">Regan Le Vourch</output></li>
-    <li><output for="decade" form="list-names">Bertilde Abele</output></li>
-    <li><output for="decade" form="list-names">Lounis Touadi</output></li>
-    <li><output for="decade" form="list-names">Mallorie Lacraz</output></li>
-    <li><output for="decade" form="list-names">Weslay Beyhier</output></li>
-    <li><output for="decade" form="list-names">Axiane Vanautryve</output></li>
-    <li><output for="decade" form="list-names">Balkis Dubief</output></li>
-    <li><output for="decade" form="list-names">Corneille Mestayer</output></li>
-    <li><output for="decade" form="list-names">Yvane Jester</output></li>
-    <li><output for="decade" form="list-names">Naelys Belbachir</output></li>
-    <li><output for="decade" form="list-names">Lais Sansoit</output></li>
-    <li><output for="decade" form="list-names">Ziyade Charpinet</output></li>
-    <li><output for="decade" form="list-names">Daniil Caniou</output></li>
-    <li><output for="decade" form="list-names">Mohcene Louisonne</output></li>
-    <li><output for="decade" form="list-names">Niya Officialdeguy</output></li>
-    <li><output for="decade" form="list-names">Loly Tivo</output></li>
-    <li><output for="decade" form="list-names">Reynalde Schaad</output></li>
-    <li><output for="decade" form="list-names">Maëlyo Pelloie</output></li>
-    <li><output for="decade" form="list-names">Teophane Domballe</output></li>
-    <li><output for="decade" form="list-names">Kenayah Tamisier</output></li>
-    <li><output for="decade" form="list-names">Artyom Fourches</output></li>
-    <li><output for="decade" form="list-names">Chahrazed Barillon</output></li>
-    <li><output for="decade" form="list-names">Faiçal Fuand</output></li>
-    <li><output for="decade" form="list-names">Elone De Barrau</output></li>
-    <li><output for="decade" form="list-names">Layton Soittoux</output></li>
-    <li><output for="decade" form="list-names">Pieyre Dudoy</output></li>
-    <li><output for="decade" form="list-names">Hissam Liano</output></li>
-    <li><output for="decade" form="list-names">Arish Drilleaud</output></li>
-    <li><output for="decade" form="list-names">Haby Bourreli</output></li>
-    <li><output for="decade" form="list-names">Lorry Debove</output></li>
-    <li><output for="decade" form="list-names">Dounia Lalive</output></li>
-    <li><output for="decade" form="list-names">Jeannin Armabessaire</output></li>
-  </ul>
-
+    <ul class="list">
+      <li><output for="decade" form="list-names">Terrence Lescalmel</output></li>
+      <li><output for="decade" form="list-names">Celianne Coradin</output></li>
+      <li><output for="decade" form="list-names">Rahmi Mariee</output></li>
+      <li><output for="decade" form="list-names">Marie-Françoise Albourie</output></li>
+      <li><output for="decade" form="list-names">Krzysztof Limousis</output></li>
+      <li><output for="decade" form="list-names">Balkiss Mouiche</output></li>
+      <li><output for="decade" form="list-names">Linsay Puma</output></li>
+      <li><output for="decade" form="list-names">Boniface Lauduique</output></li>
+      <li><output for="decade" form="list-names">Haykal Tronc</output></li>
+      <li><output for="decade" form="list-names">Zafir Griman</output></li>
+      <li><output for="decade" form="list-names">Tayma Yvelain</output></li>
+      <li><output for="decade" form="list-names">Louen Paverne</output></li>
+      <li><output for="decade" form="list-names">Peinda Auric</output></li>
+      <li><output for="decade" form="list-names">Cindie Metrot</output></li>
+      <li><output for="decade" form="list-names">Mahieddine Oblinger</output></li>
+      <li><output for="decade" form="list-names">Hudayfa Leumaire</output></li>
+      <li><output for="decade" form="list-names">Nassila Barere</output></li>
+      <li><output for="decade" form="list-names">Percy Vittet</output></li>
+      <li><output for="decade" form="list-names">Regan Le Vourch</output></li>
+      <li><output for="decade" form="list-names">Bertilde Abele</output></li>
+      <li><output for="decade" form="list-names">Lounis Touadi</output></li>
+      <li><output for="decade" form="list-names">Mallorie Lacraz</output></li>
+      <li><output for="decade" form="list-names">Weslay Beyhier</output></li>
+      <li><output for="decade" form="list-names">Axiane Vanautryve</output></li>
+      <li><output for="decade" form="list-names">Balkis Dubief</output></li>
+      <li><output for="decade" form="list-names">Corneille Mestayer</output></li>
+      <li><output for="decade" form="list-names">Yvane Jester</output></li>
+      <li><output for="decade" form="list-names">Naelys Belbachir</output></li>
+      <li><output for="decade" form="list-names">Lais Sansoit</output></li>
+      <li><output for="decade" form="list-names">Ziyade Charpinet</output></li>
+      <li><output for="decade" form="list-names">Daniil Caniou</output></li>
+      <li><output for="decade" form="list-names">Mohcene Louisonne</output></li>
+      <li><output for="decade" form="list-names">Niya Officialdeguy</output></li>
+      <li><output for="decade" form="list-names">Loly Tivo</output></li>
+      <li><output for="decade" form="list-names">Reynalde Schaad</output></li>
+      <li><output for="decade" form="list-names">Maëlyo Pelloie</output></li>
+      <li><output for="decade" form="list-names">Teophane Domballe</output></li>
+      <li><output for="decade" form="list-names">Kenayah Tamisier</output></li>
+      <li><output for="decade" form="list-names">Artyom Fourches</output></li>
+      <li><output for="decade" form="list-names">Chahrazed Barillon</output></li>
+      <li><output for="decade" form="list-names">Faiçal Fuand</output></li>
+      <li><output for="decade" form="list-names">Elone De Barrau</output></li>
+      <li><output for="decade" form="list-names">Layton Soittoux</output></li>
+      <li><output for="decade" form="list-names">Pieyre Dudoy</output></li>
+      <li><output for="decade" form="list-names">Hissam Liano</output></li>
+      <li><output for="decade" form="list-names">Arish Drilleaud</output></li>
+      <li><output for="decade" form="list-names">Haby Bourreli</output></li>
+      <li><output for="decade" form="list-names">Lorry Debove</output></li>
+      <li><output for="decade" form="list-names">Dounia Lalive</output></li>
+      <li><output for="decade" form="list-names">Jeannin Armabessaire</output></li>
+    </ul>
+  </main>
   <script src="./script.js" type="module"></script>
 </body>
 

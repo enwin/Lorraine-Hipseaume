@@ -1,0 +1,155 @@
+.names-form{
+  margin: $gutter;
+  text-transform: uppercase;
+
+  fieldset {
+    border: none;
+    padding: 0;
+  }
+
+  legend {
+    @include hide();
+  }
+
+  label {
+    font-weight: 800;
+    font-size: rem(40);
+    font-variant-numeric: tabular-nums;
+    width: 100%;
+    span {
+      @supports(background-clip: text){
+        background-clip: text;
+        color: transparent;
+      }
+      @supports(-webkit-background-clip: text){
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    }
+  }
+
+  .rarity {
+    label {
+      span {
+        @supports(background-clip: text){
+          background-image: linear-gradient(90deg, #7B769A, #6E93B6);
+        }
+        @supports(-webkit-background-clip: text){
+          background-image: linear-gradient(90deg, #7B769A, #6E93B6);
+        }
+      }
+    }
+  }
+  .title {
+    label {
+      span {
+        @supports(background-clip: text){
+          background-image: linear-gradient(90deg, #00143C, #2FF567);
+        }
+        @supports(-webkit-background-clip: text){
+          background-image: linear-gradient(90deg, #00143C, #2FF567);
+        }
+      }
+    }
+  }
+  .decade {
+    label {
+      span {
+        @supports(background-clip: text){
+          background-image: linear-gradient(90deg, #57E812, #0270F1);
+        }
+        @supports(-webkit-background-clip: text){
+          background-image: linear-gradient(90deg, #57E812, #0270F1);
+        }
+      }
+    }
+  }
+
+  .footer {
+    border-bottom: 1px solid #465860;
+    padding-bottom: rem( 16 );
+  }
+
+  [type=submit] {
+    background: none;
+    border: none;
+    padding: 0;
+    text-transform: uppercase;
+    font-size: rem( 20 );
+
+  }
+}
+
+.fieldset-word{
+  font-size: rem( 20 );
+}
+
+.input-option {
+  --progress-width: rem( 40 );
+
+  &:hover {
+    & .progress {
+      span {
+        &::before {
+          transform: scale(1, 1);
+        }
+      }
+    }
+  }
+
+  input[type=radio] {
+    @include hide();
+
+    &:not(:checked) + label {
+      @include hide();
+    }
+  }
+
+  .values {
+    display: flex;
+    align-items: flex-end;
+
+    &:focus-within + .progress{
+      span {
+        &::before {
+          transform: scale(1, 1);
+        }
+      }
+    }
+  }
+
+  .progress {
+    position: relative;
+    height: 1px;
+    background-color: currentColor;
+    margin: rem( 8 ) 0 rem( 16 );
+    color: #465860;
+    padding: 0 calc( var(--progress-width) / 2 );
+
+    span {
+      position: relative;
+      display: block;
+
+      span {
+        position: absolute;
+        left: var(--progress-index, 0);
+        width: calc( var(--progress-width) + (var(--progress-width) / 2) );
+        height: rem( 5 );
+        top: -2px;
+        transition: left 0.3s ease;
+        transform: translateX(-50%);
+
+        &::before {
+          content: '';
+          border-radius: 2px;
+          display: block;
+          width: 100%;
+          height: 100%;
+          transform: scale(1, 0);
+          background-color: currentColor;
+          transition: transform 0.3s ease;
+        }
+      }
+    }
+  }
+}
