@@ -14,9 +14,13 @@ $action-size: rem( 32*3 );
   label {
     font-weight: 800;
     font-size: rem(40);
-    font-variant-numeric: tabular-nums;
-    // font-size: min( #{(32 / 320 * 100vw)}, #{rem(40)});
     width: 100%;
+
+    @media ( max-width: em( 374 / 16 ) ) {
+      & {
+        font-size: rem( 30 );
+      }
+    }
 
     span {
       @supports(background-clip: text){
