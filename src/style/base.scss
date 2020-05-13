@@ -5,4 +5,10 @@ body {
   font-size: 100%;
   line-height: (24/20);
   color: #465860;
+  display: flex;
+  flex-direction: column;
+
+  main {
+    flex: 1
+  }
 }

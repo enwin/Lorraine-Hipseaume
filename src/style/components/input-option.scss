@@ -1,4 +1,4 @@
-$action-size: rem( 32*3 );
+$action-size: rem( 88 );
 
 .input-option {
   --progress-shift: rem( 40 );
@@ -113,7 +113,7 @@ $action-size: rem( 32*3 );
 .input-option-actions {
   position: absolute;
   top: 50%;
-  right: rem( -7 );
+  right: rem( -14 );
   width: $action-size;
   display: flex;
   justify-content: space-between;

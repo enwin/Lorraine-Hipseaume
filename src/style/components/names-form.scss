@@ -1,6 +1,15 @@
 .names-form{
-  margin: rem( 16 ) $gutter;
+  margin: 0 $gutter rem( 16 );
   text-transform: uppercase;
+
+  label {
+    span {
+      font-feature-settings: 'tnum';
+      -webkit-font-feature-settings: 'tnum';
+      -moz-font-feature-settings: 'tnum';
+      font-variant-numeric: tabular-nums;
+    }
+  }
 
   .rarity {
     label {
@@ -46,6 +55,52 @@
 
     li {
       margin: rem( 12 ) 0;
+    }
+  }
+
+  @media (min-width: $medium) {
+    & {
+      min-width: rem( 330 );
+    }
+  }
+  @media (min-width: $medium) and (max-width: $max-large ) {
+    & {
+      form {
+        position: sticky;
+        top: rem( 16 );
+      }
+    }
+  }
+
+  @media (min-width: $xlarge) {
+    & {
+      form {
+        display: flex;
+        margin-left: rem( -20 );
+        width: calc( 100% + #{rem(20)} );
+        flex-wrap: wrap;
+      }
+
+      fieldset {
+        padding: 0 rem( 20 );
+        width: (100%/3);
+      }
+
+      .footer {
+        display: flex;
+        flex-direction: row-reverse;
+        margin: 0 rem( 20 );
+        width: 100%;
+
+        li {
+          margin-top: 0;
+          margin-left: rem( 16 );
+        }
+      }
+
+      .form-list-copy {
+        display: none;
+      }
     }
   }
 }

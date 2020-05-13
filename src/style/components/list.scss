@@ -2,4 +2,35 @@
   padding: 0 $gutter;
   line-height: (24/16);
   font-family: "Jetbrains Mono";
+
+  li[aria-hidden]{
+    column-span: all;
+    height: rem( 40 );
+  }
+
+  @media (min-width: $medium) {
+    margin: $gutter 0;
+    width: 100%;
+  }
+
+  @media (min-width: $large) {
+    columns: 2;
+    column-gap: $gutter;
+  }
+  @media (min-width: $xlarge) {
+    columns: 4;
+    column-gap: $gutter;
+
+    li[aria-hidden]{
+      display: none;
+
+      ~ li[aria-hidden] {
+        display: list-item;
+
+        ~ li[aria-hidden] {
+          display: none;
+        }
+      }
+    }
+  }
 }
