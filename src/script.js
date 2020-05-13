@@ -32,6 +32,22 @@ class Names {
         this.updateDecadeTitle();
       }
     });
+
+    document.addEventListener('click', (event) => {
+      const action = event.target.closest('[data-action]');
+
+      if (action) {
+        this.handleAction(action);
+      }
+    });
+  }
+
+  async copyList() {
+    const items = Array.from(this.refs.list.querySelectorAll('output'));
+
+    const names = items.map((item) => item.textContent.trim());
+
+    await navigator.clipboard.writeText(names.join('\n'));
   }
 
   displayResults() {
@@ -44,6 +60,14 @@ class Names {
     });
 
     this.refs.list.innerHTML = listItems.join('\n');
+  }
+
+  handleAction(el) {
+    const actionName = el.dataset.action;
+
+    if (actionName === 'copy' && navigator.clipboard) {
+      this.copyList();
+    }
   }
 
   updateDecadeTitle() {
