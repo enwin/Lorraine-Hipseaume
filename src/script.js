@@ -52,10 +52,6 @@ class Names {
 
   displayResults() {
     const listItems = this.results.map(({ prenom, nom }, index) => {
-      if (index >= 20 && index % 20 === 0) {
-        return `<li aria-hidden="true"></li><li><output form="list-names">${prenom} ${nom}</output></li>`;
-      }
-
       return `<li><output form="list-names">${prenom} ${nom}</output></li>`;
     });
 

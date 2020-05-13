@@ -3,14 +3,33 @@
   line-height: (24/16);
   font-family: "Jetbrains Mono";
 
-  li[aria-hidden]{
-    column-span: all;
-    height: rem( 40 );
+  li{
+    &::after {
+      display: block;
+      column-span: all;
+      height: rem( 40 );
+    }
+  }
+
+  @media (max-width: $max-medium) {
+    li:nth-child(10n){
+      &::after {
+        content: '';
+      }
+    }
   }
 
   @media (min-width: $medium) {
     margin: $gutter 0;
     width: 100%;
+
+    @media (max-width: $max-large){
+      li:nth-child(20n){
+        &::after {
+          content: '';
+        }
+      }
+    }
   }
 
   @media (min-width: $large) {
@@ -21,15 +40,9 @@
     columns: 4;
     column-gap: $gutter;
 
-    li[aria-hidden]{
-      display: none;
-
-      ~ li[aria-hidden] {
-        display: list-item;
-
-        ~ li[aria-hidden] {
-          display: none;
-        }
+    li:nth-child(40n){
+      &::after {
+        content: '';
       }
     }
   }
