@@ -69,7 +69,7 @@ class Names {
     const loader = new Promise((resolve) => {
       window.setTimeout(() => {
         resolve();
-      }, 1000);
+      }, 750);
     });
 
     const fetch = window.fetch(endpoint).then((res) => res.json());
