@@ -137,7 +137,14 @@ class Names {
     this.refs.list.setAttribute('aria-busy', value);
 
     if (value) {
+      const scrollPosition =
+        document.documentElement.scrollTop || document.body.scrollTop;
+
       this.refs.list.focus();
+
+      window.requestAnimationFrame(() => {
+        document.documentElement.scrollTop = document.body.scrollTop = scrollPosition;
+      });
     }
 
     this.refs.submits.forEach((el) => {
