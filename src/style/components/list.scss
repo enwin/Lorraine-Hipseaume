@@ -9,6 +9,12 @@
       column-span: all;
       height: rem( 40 );
     }
+
+    + li:last-child {
+      &::after {
+        content: none;
+      }
+    }
   }
 
   @media (max-width: $max-medium) {
