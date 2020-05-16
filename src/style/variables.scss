@@ -16,3 +16,5 @@ $max-xlarge: ( $xxlarge - $pixel );
 $max-width: rem( 1112 );
 
 $gutter: rem( 24 );
+
+$easing: cubic-bezier( 0.250, 0.100, 0.250, 1);

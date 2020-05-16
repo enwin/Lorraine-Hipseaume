@@ -3,6 +3,8 @@
   line-height: (24/16);
   font-family: "Jetbrains Mono";
 
+  outline: none;
+
   li{
     &::after {
       display: block;

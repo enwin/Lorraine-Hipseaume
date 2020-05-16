@@ -12,11 +12,13 @@ class Names {
       list: document.querySelector('ul.list'),
       decade: document.getElementById('decade-display'),
       decadeTitle: document.querySelector('.input-option.decade p'),
+      submits: Array.from(document.querySelectorAll('button[type="submit"]')),
     };
 
     this.data = {
-      results: [],
       decadeValues: JSON.parse(this.refs.decadeTitle.dataset.values),
+      loading: false,
+      results: [],
     };
 
     this.bind();
@@ -32,6 +34,10 @@ class Names {
       if (event.target.name === 'title') {
         this.updateDecadeTitle();
       }
+    });
+
+    this.refs.submits[0].addEventListener('animationiteration', (event) => {
+      this.watchLoadingAnimation(event);
     });
 
     document.addEventListener('click', (event) => {
@@ -59,6 +65,20 @@ class Names {
     this.refs.list.innerHTML = listItems.join('\n');
   }
 
+  fetch(endpoint) {
+    const loader = new Promise((resolve) => {
+      window.setTimeout(() => {
+        resolve();
+      }, 1000);
+    });
+
+    const fetch = window.fetch(endpoint).then((res) => res.json());
+
+    return Promise.all([loader, fetch])
+      .then(([, response]) => response)
+      .catch(() => ({ error: true }));
+  }
+
   handleAction(el) {
     const actionName = el.dataset.action;
 
@@ -73,7 +93,19 @@ class Names {
     ];
   }
 
+  watchLoadingAnimation() {
+    this.refs.submits.forEach((el) => {
+      el.classList.remove('loading');
+    });
+  }
+
   async submitForm() {
+    if (this.loading) {
+      return;
+    }
+
+    this.loading = true;
+
     const data = new FormData(this.refs.form);
 
     const searchParams = new URLSearchParams();
@@ -86,16 +118,34 @@ class Names {
 
     const endpoint = `${rangeEndpoint}?${queryString}`;
 
-    const { results } = await window
-      .fetch(endpoint)
-      .then((res) => res.json())
-      .catch(() => ({ error: true }));
+    const { results } = await this.fetch(endpoint);
+
+    this.loading = false;
 
     if (!results) {
       return;
     }
 
     this.results = results;
+  }
+
+  get loading() {
+    return this.data.loading;
+  }
+
+  set loading(value) {
+    this.refs.list.setAttribute('aria-busy', value);
+
+    if (value) {
+      this.refs.list.focus();
+    }
+
+    this.refs.submits.forEach((el) => {
+      el.disabled = value;
+      if (value) {
+        el.classList.add('loading');
+      }
+    });
   }
 
   get results() {

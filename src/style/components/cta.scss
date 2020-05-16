@@ -1,3 +1,15 @@
+$loader-width: (20 / 192 * 100%);
+
+@keyframes load{
+  0%,
+  100% {
+    left: ($loader-width / 2);
+  }
+  50% {
+    left: (100% - ($loader-width / 2))
+  }
+}
+
 .cta {
   background: none;
   border: none;
@@ -8,18 +20,51 @@
   text-transform: uppercase;
   transition: background 0.3s ease;
   vertical-align: top;
+
+  &[type="submit"]{
+    position: relative;
+
+    &:after{
+      background-color: currentColor;
+      border-radius: 1px;
+      bottom: 0;
+      content: '';
+      opacity: 0;
+      height: rem( 3 );
+      left: 0;
+      position: absolute;
+      width: $loader-width;
+      transition: opacity 0.3s $easing;
+      transform: translateX(-50%);
+    }
+
+    &.loading {
+      &:after {
+        animation: load 2s cubic-bezier(0.76, 0, 0.24, 1) infinite;
+      }
+    }
+
+    &:disabled {
+      &:after{
+        opacity: 1;
+      }
+    }
+  }
 }
 
 
-button.cta:not(:disabled),
+button.cta,
 a.cta[href]{
   background-image: linear-gradient(90deg, currentColor, currentColor);
   background-position: 0 calc( 100% - 1px);
   background-repeat: repeat-x;
   background-size: 100% 1px;
+  padding-bottom: 1px;
 
-  @include interact() {
-    background-position: 0 100%;
-    background-size: 100% 2px;
+  &:not(:disabled){
+    @include interact() {
+      background-position: 0 100%;
+      background-size: 100% 2px;
+    }
   }
 }
