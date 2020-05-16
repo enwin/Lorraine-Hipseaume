@@ -31,7 +31,7 @@ $loader-width: (20 / 192 * 100%);
       content: '';
       opacity: 0;
       height: rem( 3 );
-      left: 0;
+      left: ($loader-width / 2);
       position: absolute;
       width: $loader-width;
       transition: opacity 0.3s $easing;
