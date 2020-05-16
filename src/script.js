@@ -27,6 +27,7 @@ class Names {
       event.preventDefault();
       this.submitForm(event);
     });
+
     this.refs.form.addEventListener('input', (event) => {
       if (event.target.name === 'title') {
         this.updateDecadeTitle();
@@ -75,7 +76,13 @@ class Names {
   async submitForm() {
     const data = new FormData(this.refs.form);
 
-    const queryString = new URLSearchParams(data).toString();
+    const searchParams = new URLSearchParams();
+
+    for (const [name, value] of data.entries()) {
+      searchParams.set(name, value);
+    }
+
+    const queryString = searchParams.toString();
 
     const endpoint = `${rangeEndpoint}?${queryString}`;
 
