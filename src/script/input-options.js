@@ -8,6 +8,10 @@ class InputOption {
       actions: this.el.querySelector('.input-option-actions'),
     };
 
+    this.data = {
+      focusWithin: false,
+    };
+
     this.bind();
 
     this.data = {
@@ -29,6 +33,22 @@ class InputOption {
     this.refs.actions.addEventListener('click', (event) => {
       this.changeOption(event.target);
     });
+
+    this.el.addEventListener(
+      'focus',
+      (event) => {
+        this.focusWithin = event.type === 'focus';
+      },
+      true,
+    );
+
+    this.el.addEventListener(
+      'blur',
+      (event) => {
+        this.focusWithin = event.type === 'focus';
+      },
+      true,
+    );
   }
 
   changeOption(el) {
@@ -55,6 +75,15 @@ class InputOption {
     );
 
     this.progressIndex = selectedIndex;
+  }
+
+  get focusWithin() {
+    return this.data.focusWithin;
+  }
+
+  set focusWithin(value) {
+    this.data.focusWithin = value;
+    this.el.classList.toggle('focus-within', value);
   }
 
   get progressIndex() {

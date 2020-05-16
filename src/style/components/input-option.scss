@@ -92,6 +92,14 @@ $action-size: rem( 88 );
       }
     }
   }
+
+  [data-input="keyboard"] &.focus-within .progress{
+    span {
+      &::before {
+        transform: scale(1, 1);
+      }
+    }
+  }
 }
 
 .input-option-title {
@@ -100,14 +108,6 @@ $action-size: rem( 88 );
 
 .input-option-wrapper {
   position: relative;
-
-  [data-input="keyboard"] &:focus-within + .progress{
-    span {
-      &::before {
-        transform: scale(1, 1);
-      }
-    }
-  }
 }
 
 .input-option-actions {
