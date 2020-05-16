@@ -22,7 +22,7 @@ class InputOption {
   }
 
   bind() {
-    this.el.addEventListener('input', (event) => {
+    this.el.addEventListener('change', (event) => {
       this.updateProgress(event);
     });
 
