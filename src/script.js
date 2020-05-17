@@ -19,6 +19,7 @@ class Names {
       decadeValues: JSON.parse(this.refs.decadeTitle.dataset.values),
       loading: false,
       results: [],
+      defaultRefreshText: this.refs.submits[0].textContent,
     };
 
     this.bind();
@@ -30,6 +31,14 @@ class Names {
       event.preventDefault();
       this.submitForm();
     });
+
+    this.refs.form.addEventListener(
+      'change',
+      (event) => {
+        this.toggleRefreshText();
+      },
+      true,
+    );
 
     this.refs.form.addEventListener('input', (event) => {
       if (event.target.name === 'title') {
@@ -88,6 +97,16 @@ class Names {
     }
   }
 
+  toggleRefreshText(update = true) {
+    this.refs.submits.forEach((el) => {
+      if (!this.loading && update) {
+        el.textContent = `${this.data.defaultRefreshText} !`;
+      } else {
+        el.textContent = this.data.defaultRefreshText;
+      }
+    });
+  }
+
   updateDecadeTitle() {
     this.refs.decadeTitle.textContent = this.data.decadeValues[
       +this.refs.form.elements['title'].value
@@ -106,6 +125,8 @@ class Names {
     }
 
     this.loading = true;
+
+    this.toggleRefreshText(false);
 
     const data = new FormData(this.refs.form);
 
