@@ -7,7 +7,18 @@ header[role="banner"]{
 
   h1 {
     font-size: rem( 40 );
-    padding-top: rem( 16 );
-    margin-bottom: rem( 16 );
+    margin: rem( 16 ) 0;
   }
+
+  [role="doc-subtitle"] {
+    color: #cccccc;
+    font-size: rem( 60 );
+    letter-spacing: em( -1 / 60 );
+    padding-top: rem( 24 );
+
+    @media (max-width: $max-large){
+      @include hide();
+    }
+  }
+
 }
