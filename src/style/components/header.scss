@@ -21,4 +21,24 @@ header[role="banner"]{
     }
   }
 
+  .about & {
+    $color: #99018e, #ea05b7;
+
+    h1 {
+      font-weight: 800;
+      display: inline-block;
+      vertical-align: top;
+
+      @supports(background-clip: text){
+        background-clip: text;
+        color: transparent;
+      }
+      @supports(-webkit-background-clip: text){
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      @include backgroundClipGradient($color);
+    }
+  }
 }
