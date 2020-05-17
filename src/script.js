@@ -22,12 +22,13 @@ class Names {
     };
 
     this.bind();
+    this.submitForm();
   }
 
   bind() {
     this.refs.form.addEventListener('submit', (event) => {
       event.preventDefault();
-      this.submitForm(event);
+      this.submitForm();
     });
 
     this.refs.form.addEventListener('input', (event) => {
