@@ -1,49 +1,135 @@
-.names-form{
+$rarity-color-1: #4a768e, #0d6d96;
+$rarity-color-2: #0d6d96, #45009c;
+$rarity-color-3: #43069c, #9c008d;
+$rarity-color-4: #9c008d, #ea05b7;
+
+
+$title-color-1: #00143c, #f52f2f;
+$title-color-2: #f52f2f, #5b0858;
+$title-color-3: #5b0858, #2f96f5;
+
+
+$decade-color-1: #C5AF85, #928A77;
+$decade-color-2: #CFA451, #928A77;
+$decade-color-3: #94A18F, #4F654B;
+$decade-color-4: #CFA451, #F5B100;
+$decade-color-5: #51C0CF, #172B5E;
+$decade-color-6: #4C6248, #5E4D22;
+$decade-color-7: #41609A, #979CA5;
+$decade-color-8: #FFB800, #FA00FF;
+$decade-color-9: #FF5C00, #4D0000;
+$decade-color-10: #29338C, #3ADF40;
+$decade-color-11: #009886, #63C600;
+$decade-color-12: #545454, #777777;
+$decade-color-13: #7951CF, #DB4CCD;
+
+.names-form {
   margin: 0 $gutter rem( 16 );
   text-transform: uppercase;
 
-  label {
-    span {
-      font-feature-settings: 'tnum';
-      -webkit-font-feature-settings: 'tnum';
-      -moz-font-feature-settings: 'tnum';
-      font-variant-numeric: tabular-nums;
-    }
-  }
-
   .rarity {
-    label {
+    label:nth-of-type(1) {
       span {
-        @supports(background-clip: text){
-          background-image: linear-gradient(90deg, #7B769A, #6E93B6);
-        }
-        @supports(-webkit-background-clip: text){
-          background-image: linear-gradient(90deg, #7B769A, #6E93B6);
-        }
+        @include backgroundClipGradient($rarity-color-1);
+      }
+    }
+    label:nth-of-type(2) {
+      span {
+        @include backgroundClipGradient($rarity-color-2);
+      }
+    }
+    label:nth-of-type(3) {
+      span {
+        @include backgroundClipGradient($rarity-color-3);
+      }
+    }
+    label:nth-of-type(4) {
+      span {
+        @include backgroundClipGradient($rarity-color-4);
       }
     }
   }
   .title {
-    label {
+    label:nth-of-type(1) {
       span {
-        @supports(background-clip: text){
-          background-image: linear-gradient(90deg, #00143C, #2FF567);
-        }
-        @supports(-webkit-background-clip: text){
-          background-image: linear-gradient(90deg, #00143C, #2FF567);
-        }
+        @include backgroundClipGradient($title-color-1);
+      }
+    }
+    label:nth-of-type(2) {
+      span {
+        @include backgroundClipGradient($title-color-2);
+      }
+    }
+    label:nth-of-type(3) {
+      span {
+        @include backgroundClipGradient($title-color-3);
       }
     }
   }
   .decade {
-    label {
+    label:nth-of-type(1) {
       span {
-        @supports(background-clip: text){
-          background-image: linear-gradient(90deg, #57E812, #0270F1);
-        }
-        @supports(-webkit-background-clip: text){
-          background-image: linear-gradient(90deg, #57E812, #0270F1);
-        }
+        @include backgroundClipGradient($decade-color-1);
+      }
+    }
+    label:nth-of-type(2) {
+      span {
+        @include backgroundClipGradient($decade-color-2);
+      }
+    }
+    label:nth-of-type(3) {
+      span {
+        @include backgroundClipGradient($decade-color-3);
+      }
+    }
+    label:nth-of-type(4) {
+      span {
+        @include backgroundClipGradient($decade-color-4);
+      }
+    }
+    label:nth-of-type(5) {
+      span {
+        @include backgroundClipGradient($decade-color-5);
+      }
+    }
+    label:nth-of-type(6) {
+      span {
+        @include backgroundClipGradient($decade-color-6);
+      }
+    }
+    label:nth-of-type(7) {
+      span {
+        @include backgroundClipGradient($decade-color-7);
+      }
+    }
+    label:nth-of-type(8) {
+      span {
+        @include backgroundClipGradient($decade-color-8);
+      }
+    }
+    label:nth-of-type(9) {
+      span {
+        @include backgroundClipGradient($decade-color-9);
+      }
+    }
+    label:nth-of-type(10) {
+      span {
+        @include backgroundClipGradient($decade-color-10);
+      }
+    }
+    label:nth-of-type(11) {
+      span {
+        @include backgroundClipGradient($decade-color-11);
+      }
+    }
+    label:nth-of-type(12) {
+      span {
+        @include backgroundClipGradient($decade-color-12);
+      }
+    }
+    label:nth-of-type(13) {
+      span {
+        @include backgroundClipGradient($decade-color-13);
       }
     }
   }
@@ -87,19 +173,15 @@
       }
 
       .footer {
-        display: flex;
-        flex-direction: row-reverse;
-        margin: 0 rem( 20 );
+        margin: rem( -6 ) rem( 20 ) 0;
+        padding-bottom: rem( 2 );
         width: 100%;
 
         li {
+          margin-bottom: rem( 8 );
           margin-top: 0;
-          margin-left: rem( 16 );
+          text-align: right;
         }
-      }
-
-      .form-list-copy {
-        display: none;
       }
     }
   }

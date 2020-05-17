@@ -17,9 +17,13 @@ footer[role="contentinfo"]{
   @media (min-width: $large) {
     text-align: right;
 
-    .footer-refresh-list,
     .footer-to-top {
       display: none;
+    }
+
+    li {
+      padding-top: rem( 2 );
+      margin: rem( 8 ) 0;
     }
   }
 }

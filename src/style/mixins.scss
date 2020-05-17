@@ -137,3 +137,12 @@
     border-color: $color transparent transparent transparent;
   }
 }
+
+@mixin backgroundClipGradient($color) {
+  @supports(background-clip: text){
+    background-image: linear-gradient(90deg, $color);
+  }
+  @supports(-webkit-background-clip: text){
+    background-image: linear-gradient(90deg, $color);
+  }
+}

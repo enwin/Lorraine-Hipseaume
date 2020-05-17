@@ -23,6 +23,11 @@ $action-size: rem( 88 );
     }
 
     span {
+      font-variant-numeric: tabular-nums;
+      font-feature-settings: 'tnum' on, 'lnum' on;
+      -webkit-feature-settings: 'tnum' on, 'lnum' on;
+      -moz-feature-settings: 'tnum' on, 'lnum' on;
+
       @supports(background-clip: text){
         background-clip: text;
         color: transparent;
