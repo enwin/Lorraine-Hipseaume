@@ -19,7 +19,7 @@
     }
   }
 
-  @media (max-width: $max-medium) {
+  @media (max-width: $max-xsmall) {
     li:nth-child(5n){
       &::after {
         content: '';
@@ -27,7 +27,9 @@
     }
   }
 
-  @media (min-width: $medium) {
+  @media (min-width: $small) {
+    columns: 2;
+    column-gap: $gutter;
     margin: $gutter 0;
     width: 100%;
 
@@ -37,18 +39,13 @@
       }
     }
 
-    @media (max-width: $max-large){
+    @media (max-width: $max-large) {
       li:nth-child(10n){
         &::after {
           content: '';
         }
       }
     }
-  }
-
-  @media (min-width: $large) {
-    columns: 2;
-    column-gap: $gutter;
   }
 
   @media (min-width: $xlarge) {
