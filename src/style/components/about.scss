@@ -1,0 +1,49 @@
+.about {
+  main {
+    padding-bottom: rem( 24 );
+
+    @media (min-width: $medium) {
+      display: flex;
+    }
+  }
+
+  section {
+    padding: 0 $gutter;
+    line-height: (24/16);
+
+    h2 {
+      text-transform: uppercase;
+      font-size: rem( 20 );
+      line-height: (24/20);
+      padding-bottom: rem( 16 );
+      border-bottom: 1px solid currentColor;
+    }
+
+    p,
+    h3 {
+      margin: em(24/16) 0;
+      font-family: $font-list;
+    }
+
+    h3 {
+      margin-bottom: em(-24/16);
+    }
+
+    a {
+      background-image: linear-gradient(90deg, rgba( #465860, 1), rgba( #465860, 1));
+      background-position: 0 100%;
+      background-repeat: repeat-x;
+      background-size: 100% 1px;
+      text-decoration: none;
+      transition: background 0.3s $easing;
+
+      @include interact() {
+        background-image: linear-gradient(90deg, rgba(#465860, 0), rgba(#465860, 0));
+      }
+    }
+
+    @media (min-width: $medium) {
+      width: (100%/3);
+    }
+  }
+}

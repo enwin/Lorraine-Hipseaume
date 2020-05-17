@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr" data-input="mouse">
+
+<head>
+  <title>À propos</title>
+  <meta name="description" content="Générateur de Lorraine Hipseaume" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <link rel="stylesheet" href="./about.css" />
+</head>
+
+<body class="about">
+  <header role="banner">
+    <p role="doc-subtitle">Générateur de Lorraine Hipseaume</p>
+    <h1>À propos</h1>
+  </header>
+  <main>
+    <section>
+      <h2>Le projet</h2>
+      <p>
+        <a href="https://judbd.com/" target="_blank" rel="noopener noreferer">Julien, designer</a>, avait besoin d’une
+        liste de prénoms et noms français
+        réalistes pour un projet
+        en cours. Il a
+        donc trifouillé les données de l’INSEE grâce à open refine et a commencé à faire des classements. Comme
+        d’habitude, il s’est dit que ce serait marrant d’en faire un énième side project qui pourrait être (in)utile et
+        ludique.
+      </p>
+
+      <p>
+        <a href="https://enwin.io" target="_blank" rel="noopener noreferer">Thomas, développeur front-end</a>, s’est dit
+        que ce ce serait cool d’avoir un site joli, responsive, propre et développé
+        dans les règles de l’art, il a donc aimablement développé le site.
+      </p>
+
+      <h3>
+        Pourquoi ce nom ?
+      </h3>
+      <p>
+        Un générateur de Lorem Ipsum sert à générer du faux texte en latin pour remplir des maquettes. Un générateur de
+        Lorraine Hipseaume sert à générer des noms français. Paradoxalement, le nom de famille Hipseaume n’existe pas
+        pour une personne née en france depuis 2 siècles.
+      </p>
+    </section>
+    <section>
+      <h2>Comment ça marche ?</h2>
+      <p>
+        Pour les prénoms figurent les prénoms donnés plus de 30 fois sur une année donnée, regroupés sur une décennie.
+      </p>
+      <p>
+        Pour les noms figurent les 2 données sont agrégées pour donner un nom générée aléatoirement.
+      </p>
+
+      <p>
+        Forcément, les noms et prénoms peuvent parfois sembler hétérogènes, car les 2 tirages sont fait séparément, il
+        ne s’agit pas de vraies personnes
+      </p>
+
+      <p>
+        Le genre du prénom est défini par le sexe à la naissance
+      </p>
+
+      <p>
+        Les catégories rares contiennent des prénoms des catégories moins rares.<br>
+        Il y a 100 noms générés à chaque fois, avec des doublons, afin d’imiter un comportement réel.<br>
+        La présence ou l’absence d’accent dépend du registre d’état civil, nous n’avons modifié aucune graphie.<br>
+        Si vous ne trouvez pas votre nom ou votre prénom, peut-être que ça veut dire que vous n’existez pas.
+      </p>
+    </section>
+    <section>
+      <h2>Les données</h2>
+      <p>
+        Les données de prénoms et noms proviennent de l’Institut National de la Statistique et des études économiques,
+        et ont été retravaillées afin de satisfaire aux besoins de ce site.
+      </p>
+
+      <p>
+        Ces données n’ont pas été modifiées.
+      </p>
+
+      <p>
+        Les données générées sont distribuées sous licence LPRAB.
+      </p>
+
+      <p>
+        Le site reste la propriété de ses auteurs et si vous le recopiez on viendra vous frapper.
+      </p>
+    </section>
+  </main>
+  <script src="./about.js" type="module"></script>
+</body>
+
+</html>
