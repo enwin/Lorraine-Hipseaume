@@ -32,7 +32,7 @@ const filterRandom = (data) => {
     return entry;
   };
 
-  while (filtered.length < 80) {
+  while (filtered.length < 100) {
     filtered.push(pick());
   }
 
