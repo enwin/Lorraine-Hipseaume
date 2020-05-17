@@ -17,7 +17,9 @@ header[role="banner"]{
     padding-top: rem( 24 );
 
     @media (max-width: $max-large){
-      @include hide();
+      span {
+        @include hide();
+      }
     }
   }
 
