@@ -1,105 +1,132 @@
 <!DOCTYPE html>
 <html lang="fr" data-input="mouse">
+  <head>
+    <title>Générateur de Lorraine Hipseaume — À propos</title>
+    <meta name="description" content="Le premier générateur de prénoms et noms français réalistes à travers les époques." />
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <link rel="stylesheet" href="./about.css" />
+    <meta property="og:site_name" content="Lorraine Hipseaume" />
+    <meta
+      property="og:image"
+      content="https://lorraine-hipseau.me/social.jpg"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://lorraine-hipseau.me/" />
+    <meta property="og:title" content="Lorraine Hipseaume" />
+    <meta
+      property="og:description"
+      content="Le premier générateur de prénoms et noms français réalistes à travers les époques."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
 
-<head>
-  <title>À propos</title>
-  <meta name="description" content="Générateur de Lorraine Hipseaume" />
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <link rel="stylesheet" href="./about.css" />
-  <meta property="og:site_name" content="Lorrain Hipseame">
-  <meta property="og:image" content="https://lorraine-hipseau.me/social.jpg" />
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://lorraine-hipseau.me/">
-  <meta property="og:title" content="Lorrain Hipseame">
-  <meta property="og:description" content="Générateur de Lorraine Hipseaume" />
-  <meta name="twitter:card" content="summary_large_image">
-</head>
+  <body class="about">
+    <header role="banner">
+      <p role="doc-subtitle"><span>Générateur de </span>Lorraine Hipseaume</p>
+      <h1>À propos</h1>
+    </header>
+    <main>
+      <section>
+        <h2>Le projet</h2>
+        <p>
+          <a href="https://judbd.com/" target="_blank" rel="noopener noreferer"
+            >Julien, designer</a
+          >, avait besoin d’une liste de prénoms et noms français réalistes pour
+          un projet en cours. Il a donc trifouillé les données de l’INSEE grâce
+          à
+          <a
+            href="https://openrefine.org/"
+            target="_blank"
+            rel="noopener noreferer"
+            >Open Refine</a
+          >
+          et a commencé à faire des classements. Comme d’habitude, il s’est dit
+          que ce serait marrant d’en faire un énième side project qui pourrait
+          être (in)utile et ludique.
+        </p>
 
-<body class="about">
-  <header role="banner">
-    <p role="doc-subtitle"><span>Générateur de </span>Lorraine Hipseaume</p>
-    <h1>À propos</h1>
-  </header>
-  <main>
-    <section>
-      <h2>Le projet</h2>
-      <p>
-        <a href="https://judbd.com/" target="_blank" rel="noopener noreferer">Julien, designer</a>, avait besoin d’une
-        liste de prénoms et noms français
-        réalistes pour un projet
-        en cours. Il a
-        donc trifouillé les données de l’INSEE grâce à open refine et a commencé à faire des classements. Comme
-        d’habitude, il s’est dit que ce serait marrant d’en faire un énième side project qui pourrait être (in)utile et
-        ludique.
-      </p>
+        <p>
+          <a href="https://enwin.io" target="_blank" rel="noopener noreferer"
+            >Thomas, développeur front-end</a
+          >, s’est dit que ce ce serait cool d’avoir un site joli, responsive,
+          propre et développé dans les règles de l’art, il a donc aimablement
+          développé le site.
+        </p>
 
-      <p>
-        <a href="https://enwin.io" target="_blank" rel="noopener noreferer">Thomas, développeur front-end</a>, s’est dit
-        que ce ce serait cool d’avoir un site joli, responsive, propre et développé
-        dans les règles de l’art, il a donc aimablement développé le site.
-      </p>
+        <h3>
+          Pourquoi ce nom ?
+        </h3>
+        <p>
+          Un générateur de Lorem Ipsum sert à générer du faux texte en latin
+          pour remplir des maquettes.</p>
+          <p>Un générateur de Lorraine Hipseaume sert à générer de faux prénoms et
+          noms français pour remplir des maquettes.</p>
+          Paradoxalement, le nom de famille « Hipseaume » n’a jamais été donné à personne depuis 1891, ça n'est pas un nom français existant.
+        </p>
+      </section>
+      <section>
+        <h2>Comment ça marche ?</h2>
+        <p>Nous tirons au sort 100 prénoms et 100 noms sur l'intégralité des prénoms et noms de personnes nées en France depuis 1891 environ, puis nous les concaténons.</p>
+        <p>
+          Les prénoms sont ceux de personnes nées entre 1900 et 2018 en France (hors Mayotte), regroupés par décennies. Ils doivent avoir été donnés au moins 3 fois par an pour figurer dans la liste.
+        </p>
+        <p>
+          Les noms de famille (anciennement noms patronymiques) sont ceux de personnes nées entre 1891 et 2000 en France métropolitaine (sauf celles nées avant 1946 et décédées avant 1972) et celles nées entre 1900 et 2000 dans un département d'outremer.
+        </p>
+        <h3>Hétérogénéité des prénoms et noms</h3>
+        <p>
+          Forcément, les noms et prénoms peuvent parfois sembler hétérogènes ou d'origines différentes,
+          car les 2 tirages sont fait séparément, il ne s’agit pas de vraies personnes. C'est un comportement souhaité, nous encourageons la diversité !
+        </p>
+        <p>
+          L'attribution d'un prénom à un genre est défini par le sexe de la personne à la naissance.
+        </p>
+        <h3>Graphie des noms et prénoms</h3>
+        <p>
+          L'orthographe retenue est celle qui figure sur l'état civil, il n'y a pas d'orthographe correcte pour un prénom. Des versions du même prénom avec ou sans accents peuvent cohabiter à des fréquences différentes et comptent chacun pour un prénom différent.
+        </p>
+        <h3>Homonymes</h3>
+        <p>Des doublons de prénoms ou noms peuvent apparaître, c'est un comportement souhaité afin de disposer d'une liste de noms réalistes pouvant comporter des homonymes, surtout sur les listes anciennes quand les prénoms étaient moins divers.</p>
+        <h3>Rareté et distribution</h3>
+        <p>
+          Les catégories rares contiennent les prénoms et noms des catégories moins
+          rares, il s'agit d'un cumul. C'est la base du tirage qui est modifiée.<br/>Choisir la catégorie « très rare » revient donc à faire un tirage sur tous les prénoms et noms disponibles.</p>
+          <p>Les niveaux de rareté sont arbitrairement définis à 5000, 1000, 500 et 1 occurences pour les prénoms et à 500, 100, 50, 1 pour les nom.</p>
+          <h3>Avertissement</h3>
+          <p>Si vous ne trouvez jamais votre nom ou votre prénom, peut-être que ça
+          veut dire que vous n’existez pas.</p>
+      </section>
+      <section>
+        <h2>Les données</h2>
+        <p>
+          Les données de <a href="https://www.insee.fr/fr/statistiques/2540004" target="_blank" rel="noopener noreferer">prénoms</a> et <a href="https://www.insee.fr/fr/statistiques/3536630" target="_blank" rel="noopener noreferer">noms</a> proviennent de l’Institut National de
+          la Statistique et des Études Économiques (INSEE), et ont été retravaillées
+          afin de satisfaire aux besoins de ce site.
+        </p>
 
-      <h3>
-        Pourquoi ce nom ?
-      </h3>
-      <p>
-        Un générateur de Lorem Ipsum sert à générer du faux texte en latin pour remplir des maquettes. Un générateur de
-        Lorraine Hipseaume sert à générer des noms français. Paradoxalement, le nom de famille Hipseaume n’existe pas
-        pour une personne née en france depuis 2 siècles.
-      </p>
-    </section>
-    <section>
-      <h2>Comment ça marche ?</h2>
-      <p>
-        Pour les prénoms figurent les prénoms donnés plus de 30 fois sur une année donnée, regroupés sur une décennie.
-      </p>
-      <p>
-        Pour les noms figurent les 2 données sont agrégées pour donner un nom générée aléatoirement.
-      </p>
+        <p>
+          Ces données n’ont pas été modifiées hors application des règles de capitalisation typographique françaises.
+        </p>
 
-      <p>
-        Forcément, les noms et prénoms peuvent parfois sembler hétérogènes, car les 2 tirages sont fait séparément, il
-        ne s’agit pas de vraies personnes
-      </p>
+        <p>
+          Les données générées par ce site sont distribuées sous <a href="https://fr.wikipedia.org/wiki/WTFPL" target="_blank" rel="noopener noreferer">licence LPRAB</a>.
+          
+        </p>
 
+        <p>
+          Le site lui-même reste la propriété de ses auteurs et si vous le recopiez sans autorisation on viendra chez vous pour vous frapper.
+        </p>
+      </section>
+    </main>
+    <footer role="contentinfo">
       <p>
-        Le genre du prénom est défini par le sexe à la naissance
+        <a class="cta" href="/">Retour au générateur</a>
       </p>
-
-      <p>
-        Les catégories rares contiennent des prénoms des catégories moins rares.<br>
-        Il y a 100 noms générés à chaque fois, avec des doublons, afin d’imiter un comportement réel.<br>
-        La présence ou l’absence d’accent dépend du registre d’état civil, nous n’avons modifié aucune graphie.<br>
-        Si vous ne trouvez pas votre nom ou votre prénom, peut-être que ça veut dire que vous n’existez pas.
-      </p>
-    </section>
-    <section>
-      <h2>Les données</h2>
-      <p>
-        Les données de prénoms et noms proviennent de l’Institut National de la Statistique et des études économiques,
-        et ont été retravaillées afin de satisfaire aux besoins de ce site.
-      </p>
-
-      <p>
-        Ces données n’ont pas été modifiées.
-      </p>
-
-      <p>
-        Les données générées sont distribuées sous licence LPRAB.
-      </p>
-
-      <p>
-        Le site reste la propriété de ses auteurs et si vous le recopiez on viendra vous frapper.
-      </p>
-    </section>
-  </main>
-  <footer role="contentinfo">
-    <p>
-      <a class="cta" href="/">Le générateur</a>
-    </p>
-  </footer>
-  <script src="./about.js" type="module"></script>
-</body>
-
+    </footer>
+    <script src="./about.js" type="module"></script>
+  </body>
 </html>
