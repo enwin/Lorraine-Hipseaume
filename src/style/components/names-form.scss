@@ -142,6 +142,32 @@ $decade-color-13: #7951CF, #DB4CCD;
     li {
       margin: rem( 12 ) 0;
     }
+
+    [id="sort"] {
+      &:checked {
+        + label {
+          text-decoration: line-through
+        }
+      }
+    }
+
+    fieldset {
+      display: block;
+      padding: 0;
+      border: 0;
+      margin: rem( 12 ) 0;
+
+      legend,
+      input[type="checkbox"] {
+        @include hide();
+      }
+
+      label {
+        cursor: pointer;
+        line-height: normal;
+        white-space: nowrap;
+      }
+    }
   }
 
   @media (min-width: $medium) {
@@ -160,7 +186,7 @@ $decade-color-13: #7951CF, #DB4CCD;
 
   @media (min-width: $xlarge) {
     & {
-      form {
+      > form {
         display: flex;
         margin-left: rem( -20 );
         width: calc( 100% + #{rem(20)} );
@@ -173,9 +199,16 @@ $decade-color-13: #7951CF, #DB4CCD;
       }
 
       .footer {
-        margin: rem( -6 ) rem( 20 ) 0;
+        margin: rem( -6 ) 0 0;
         padding-bottom: rem( 2 );
         width: 100%;
+        display: flex;
+        justify-content: space-between;
+
+        fieldset {
+          margin-bottom: rem( 8 );
+          margin-top: 0;
+        }
 
         li {
           margin-bottom: rem( 8 );

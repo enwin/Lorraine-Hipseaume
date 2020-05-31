@@ -140,11 +140,25 @@
           </div>
           <div class="progress" role="presentation"><span><span></span></span></div>
         </fieldset>
-        <ul class="footer">
+      </form>
+      <div class="footer">
+        <form id="filter">
+          <fieldset>
+            <legend>Triage de la liste</legend>
+            <input id="sort" name="sort" type="checkbox">
+            <label class="cta" for="sort">A — Z</label>
+          </fieldset>
+          <fieldset>
+            <legend>Ordre des noms et prénoms</legend>
+            <input id="order" name="order" type="checkbox">
+            <label class="cta" for="order">Nom — Prénom</label>
+          </fieldset>
+        </form>
+        <ul>
           <li><button type="submit" class="cta">Rafraichir la liste</button></li>
           <li><button class="cta" data-action="copy" type="button">Copier la liste</button></li>
         </ul>
-      </form>
+      </div>
     </div>
     <ul class="list" tabindex="-1">
       <li aria-hidden="true">······· ·······</li>

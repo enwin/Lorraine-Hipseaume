@@ -8,7 +8,8 @@ const rangeEndpoint = '/.netlify/functions/range';
 class Names {
   constructor() {
     this.refs = {
-      form: document.querySelector('form'),
+      form: document.getElementById('list-names'),
+      filter: document.getElementById('filter'),
       list: document.querySelector('ul.list'),
       decade: document.getElementById('decade-display'),
       decadeTitle: document.querySelector('.input-option.decade p'),
@@ -17,13 +18,38 @@ class Names {
 
     this.data = {
       decadeValues: JSON.parse(this.refs.decadeTitle.dataset.values),
+      defaultRefreshText: this.refs.submits[0].textContent,
       loading: false,
       results: [],
-      defaultRefreshText: this.refs.submits[0].textContent,
+      sortedResults: [],
+      random: true,
+      nameFirst: false,
     };
 
     this.bind();
     this.submitForm();
+  }
+
+  applyFilter(input) {
+    if (input.name === 'sort') {
+      this.random = !input.checked;
+
+      return;
+    }
+
+    if (input.name === 'order') {
+      this.nameFirst = input.checked;
+
+      this.sortedResults = this.sortList(this.results);
+
+      const label = input.nextElementSibling;
+
+      const text = label.textContent.split(' — ');
+
+      label.textContent = text.reverse().join(' — ');
+
+      return;
+    }
   }
 
   bind() {
@@ -44,6 +70,10 @@ class Names {
       if (event.target.name === 'title') {
         this.updateDecadeTitle();
       }
+    });
+
+    this.refs.filter.addEventListener('input', (event) => {
+      this.applyFilter(event.target);
     });
 
     this.refs.submits[0].addEventListener('animationiteration', (event) => {
@@ -68,8 +98,11 @@ class Names {
   }
 
   displayResults() {
-    const listItems = this.results.map(({ prenom, nom }, index) => {
-      return `<li><output form="list-names">${prenom} ${nom}</output></li>`;
+    const list = this.random ? this.results : this.sortedResults;
+
+    const listItems = list.map(({ prenom, nom }) => {
+      const name = this.nameFirst ? `${nom} ${prenom}` : `${prenom} ${nom}`;
+      return `<li><output form="list-names">${name}</output></li>`;
     });
 
     this.refs.list.innerHTML = listItems.join('\n');
@@ -94,7 +127,21 @@ class Names {
 
     if (actionName === 'copy' && navigator.clipboard) {
       this.copyList();
+      return;
     }
+  }
+
+  sortList(list = this.results) {
+    return list.slice().sort((a, b) => {
+      const nameA = this.nameFirst
+        ? `${a.nom} ${a.prenom}`
+        : `${a.prenom} ${a.nom}`;
+      const nameB = this.nameFirst
+        ? `${b.nom} ${b.prenom}`
+        : `${b.prenom} ${b.nom}`;
+
+      return nameA.localeCompare(nameB);
+    });
   }
 
   toggleRefreshText(update = true) {
@@ -177,12 +224,44 @@ class Names {
     });
   }
 
+  get nameFirst() {
+    return this.data.nameFirst;
+  }
+
+  set nameFirst(value) {
+    this.data.nameFirst = value;
+
+    this.displayResults();
+  }
+
   get results() {
     return this.data.results;
   }
 
   set results(value) {
     this.data.results = value;
+
+    this.data.sortedResults = this.sortList(value);
+
+    this.displayResults();
+  }
+
+  get random() {
+    return this.data.random;
+  }
+
+  set random(value) {
+    this.data.random = value;
+
+    this.displayResults(this.results);
+  }
+  get sortedResults() {
+    return this.data.sortedResults;
+  }
+
+  set sortedResults(value) {
+    this.data.sortedResults = value;
+
     this.displayResults();
   }
 }

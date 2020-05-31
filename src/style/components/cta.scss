@@ -54,7 +54,8 @@ $loader-width: (20 / 192 * 100%);
 
 
 button.cta,
-a.cta[href]{
+a.cta[href],
+label.cta{
   background-image: linear-gradient(90deg, currentColor, currentColor);
   background-position: 0 calc( 100% - 1px);
   background-repeat: repeat-x;
@@ -63,6 +64,15 @@ a.cta[href]{
 
   &:not(:disabled){
     @include interact() {
+      background-position: 0 100%;
+      background-size: 100% 2px;
+    }
+  }
+}
+
+input[type="checkbox"]{
+  @include interact() {
+    + .cta {
       background-position: 0 100%;
       background-size: 100% 2px;
     }
