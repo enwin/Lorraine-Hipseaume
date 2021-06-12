@@ -1,6 +1,7 @@
 {
     "name": "Lorraine Hipseaume",
     "short_name": "Lorraine Hipseaume",
+    "start_url": "/",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
