@@ -19,6 +19,7 @@
     "gulp": "^4.0.2",
     "gulp-postcss": "^8.0.0",
     "gulp-sass": "^4.1.0",
+    "lambda-rate-limiter": "^3.0.1",
     "postcss-clean": "^1.1.0",
     "sass": "^1.26.5"
   }

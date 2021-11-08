@@ -1,6 +1,11 @@
 const lastnames = require('./lastnames.json');
 const firstnames = require('./firstnames.json');
 
+const rateLimit = require("lambda-rate-limiter")({
+  // 30s limit interval
+  interval: 30 * 1000
+}).check;
+
 const ranges = [
   [1891, 1900],
   [1901, 1910],
@@ -87,12 +92,22 @@ const filterRangeLastnames = (data, { range, rarity }) => {
   return Promise.resolve(result);
 };
 
-exports.handler = async function (event, context, callback) {
-  if(event.headers['sec-fetch-mode'] === 'cors' || event.headers.referer !== 'https://lorraine-hipseau.me/'){
-    callback(null, {
+exports.handler = async function (event, context) {
+  if(event.headers['sec-fetch-site'] !== 'same-origin' || event.headers.referer !== 'https://lorraine-hipseau.me/'){
+    return {
       statusCode: 403,
       body: '',
-    });
+    };
+  }
+
+  try {
+    // limit to 5 request in 30s
+    await rateLimit(5, event.headers["client-ip"]);
+
+  } catch (error) {
+    return {
+      statusCode: 429
+    };
   }
 
   console.log('EVENT', event.headers)
@@ -109,10 +124,10 @@ exports.handler = async function (event, context, callback) {
     : 0;
 
   if (!range) {
-    callback(null, {
+    return {
       statusCode: 403,
       body: '',
-    });
+    };
   }
 
   const lastNames = await filterRangeLastnames(lastnames, {
@@ -137,9 +152,9 @@ exports.handler = async function (event, context, callback) {
     total: results.length,
   };
 
-  callback(null, {
+  return {
     statusCode: 200,
     headers: { 'content-type': 'application/json; charset=utf-8' },
     body: JSON.stringify(response, null, 2),
-  });
+  };
 };
