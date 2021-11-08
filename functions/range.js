@@ -102,7 +102,7 @@ exports.handler = async function (event, context) {
 
   try {
     // limit to 5 request in 30s
-    await rateLimit(5, event.headers["client-ip"]);
+    await rateLimit(5, event.headers['client-ip']);
 
   } catch (error) {
     return {
@@ -154,7 +154,10 @@ exports.handler = async function (event, context) {
 
   return {
     statusCode: 200,
-    headers: { 'content-type': 'application/json; charset=utf-8' },
+    headers: {
+      'content-type': 'application/json; charset=utf-8',
+      'cache-control': `public, max-age=${365 * 86400}`
+    },
     body: JSON.stringify(response, null, 2),
   };
 };
