@@ -88,6 +88,7 @@ const filterRangeLastnames = (data, { range, rarity }) => {
 };
 
 exports.handler = async function (event, context, callback) {
+  console.log('EVENT', { event })
   const range = event.queryStringParameters.q;
   const page = event.queryStringParameters.page
     ? event.queryStringParameters.page - 1
