@@ -95,8 +95,7 @@ const filterRangeLastnames = (data, { range, rarity }) => {
 exports.handler = async function (event, context) {
   if(event.headers['sec-fetch-site'] !== 'same-origin' || event.headers.referer !== 'https://lorraine-hipseau.me/'){
     return {
-      statusCode: 403,
-      body: '',
+      statusCode: 404,
     };
   }
 
@@ -113,9 +112,6 @@ exports.handler = async function (event, context) {
   console.log('EVENT', event.headers)
 
   const range = event.queryStringParameters.q;
-  const page = event.queryStringParameters.page
-    ? event.queryStringParameters.page - 1
-    : 0;
   const title = event.queryStringParameters.title
     ? +event.queryStringParameters.title
     : 0;

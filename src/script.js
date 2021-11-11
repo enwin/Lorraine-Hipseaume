@@ -3,7 +3,7 @@ import inputOptions from './script/input-options.js';
 
 inputOptions();
 
-const rangeEndpoint = '/.netlify/functions/range';
+const rangeEndpoint = '/data';
 
 class Names {
   constructor() {
