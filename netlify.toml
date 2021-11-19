@@ -22,4 +22,5 @@
 [[redirects]]
   from = "/data"
   to = "/.netlify/functions/data"
+  query = {title=":title", rarity=":rarity", q=":q"}
   status = 200
