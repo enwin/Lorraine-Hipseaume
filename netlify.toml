@@ -20,7 +20,6 @@
     X-XSS-Protection = "1; mode=block"
 
 [[redirects]]
-  from = "/data"
+  from = "/data/:range/:rarity/:title"
   to = "/.netlify/functions/data"
-  query = {title=":title", rarity=":rarity", q=":q"}
   status = 200

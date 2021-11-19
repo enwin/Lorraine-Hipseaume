@@ -109,14 +109,16 @@ exports.handler = async function (event, context) {
     };
   }
 
-  console.log('EVENT', event.headers)
+  console.log('EVENT', event.headers, event.path)
 
-  const range = event.queryStringParameters.q;
-  const title = event.queryStringParameters.title
-    ? +event.queryStringParameters.title
+  const splat = event.path.substr(1).split('/')
+
+  const range = splat[1];
+  const title = splat[3]
+    ? +splat[3]
     : 0;
-  const rarityLevel = event.queryStringParameters.rarity
-    ? +event.queryStringParameters.rarity
+  const rarityLevel = splat[2]
+    ? +splat[2]
     : 0;
 
   if (!range) {

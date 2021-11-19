@@ -177,15 +177,9 @@ class Names {
 
     const data = new FormData(this.refs.form);
 
-    const searchParams = new URLSearchParams();
+    const searchParams = [data.get('q'), data.get('rarity'), data.get('title')];
 
-    for (const [name, value] of data.entries()) {
-      searchParams.set(name, value);
-    }
-
-    const queryString = searchParams.toString();
-
-    const endpoint = `${rangeEndpoint}?${queryString}`;
+    const endpoint = `${rangeEndpoint}/${searchParams.join('/')}`;
 
     const { results } = await this.fetch(endpoint);
 
