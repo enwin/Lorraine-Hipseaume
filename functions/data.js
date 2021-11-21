@@ -109,7 +109,7 @@ exports.handler = async function (event, context) {
     };
   }
 
-  console.log('EVENT', event.headers, event.path)
+  console.log('EVENT', event.headers)
 
   const splat = event.path.substr(1).split('/')
 
@@ -154,7 +154,7 @@ exports.handler = async function (event, context) {
     statusCode: 200,
     headers: {
       'content-type': 'application/json; charset=utf-8',
-      'cache-control': `public, max-age=${365 * 86400}`
+      'cache-control': `public, max-age=30`
     },
     body: JSON.stringify(response, null, 2),
   };
