@@ -13,7 +13,7 @@ header[role="banner"]{
   [role="doc-subtitle"] {
     color: #cccccc;
     font-size: rem( 60 );
-    letter-spacing: em( -1 / 60 );
+    letter-spacing: em( math.div(-1, 60) );
     padding-top: rem( 24 );
 
     @media (max-width: $max-large){

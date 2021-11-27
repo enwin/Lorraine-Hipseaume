@@ -1,12 +1,12 @@
-$loader-width: (20 / 192 * 100%);
+$loader-width: (math.div(20, 192) * 100%);
 
 @keyframes load{
   0%,
   100% {
-    left: ($loader-width / 2);
+    left: math.div($loader-width, 2);
   }
   50% {
-    left: (100% - ($loader-width / 2))
+    left: (100% - math.div($loader-width, 2))
   }
 }
 
@@ -31,7 +31,7 @@ $loader-width: (20 / 192 * 100%);
       content: '';
       opacity: 0;
       height: rem( 3 );
-      left: ($loader-width / 2);
+      left: math.div($loader-width, 2);
       position: absolute;
       width: $loader-width;
       transition: opacity 0.3s $easing;

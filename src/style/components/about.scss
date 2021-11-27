@@ -7,24 +7,24 @@
 
   section {
     padding: 0 $gutter;
-    line-height: (24/16);
+    line-height: math.div(24, 16);
 
     h2 {
       text-transform: uppercase;
       font-size: rem( 20 );
-      line-height: (24/20);
+      line-height: math.div(24, 20);
       padding-bottom: rem( 16 );
       border-bottom: 1px solid currentColor;
     }
 
     p,
     h3 {
-      margin: em(24/16) 0;
+      margin: em(math.div(24, 16)) 0;
       font-family: $font-list;
     }
 
     h3 {
-      margin-bottom: em(-24/16);
+      margin-bottom: em(math.div(-24, 16));
     }
 
     a {
@@ -41,7 +41,7 @@
     }
 
     @media (min-width: $medium) {
-      width: (100%/3);
+      width: math.div(100%, 3);
     }
   }
 }

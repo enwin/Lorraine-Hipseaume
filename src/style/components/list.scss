@@ -1,6 +1,6 @@
 .list {
   padding: 0 $gutter;
-  line-height: (24/16);
+  line-height: math.div(24, 16);
   font-family: $font-list;
 
   outline: none;

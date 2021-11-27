@@ -1,10 +1,10 @@
-$pixel: em( 1 / 16 );
-$xsmall: ( 360 / 16 * 1em );
-$small: ( 576 / 16 * 1em );
-$medium: ( 768 / 16 * 1em );
-$large: ( 992 / 16 * 1em );
-$xlarge: ( 1100 / 16 * 1em );
-$xxlarge: ( 1200 / 16 * 1em );
+$pixel: em( math.div(1, 16) );
+$xsmall: (math.div( 360, 16) * 1em );
+$small: (math.div( 576, 16) * 1em );
+$medium: (math.div( 768, 16) * 1em );
+$large: (math.div( 992, 16) * 1em );
+$xlarge: ( math.div(1100, 16) * 1em );
+$xxlarge: ( math.div(1200, 16) * 1em );
 
 $max-root: ($xsmall - $pixel );
 $max-xsmall: ($small - $pixel );

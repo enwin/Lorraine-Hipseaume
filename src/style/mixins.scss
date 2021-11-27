@@ -5,7 +5,7 @@
 
 // Convert pixels to rems
 @function rem( $size ) {
-  @return ( $size / 16 * 1rem );
+  @return ( math.div($size, 16) * 1rem );
 }
 
 
@@ -48,10 +48,10 @@
 
 @mixin title-level( $size, $height, $spacing: false ) {
   font-size: rem( $size );
-  line-height: ( $height / $size );
+  line-height: math.div( $height, $size );
 
   @if $spacing {
-    letter-spacing: em( $spacing / $size );
+    letter-spacing: em( math.div($spacing, $size) );
   }
 }
 
@@ -84,7 +84,7 @@
     width: rem( $separator-width );
 
     @if $align == center {
-      margin-left: rem( $separator-width / -2 );
+      margin-left: rem( math.div($separator-width, -2) );
     }
   }
 }

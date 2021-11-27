@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "node generate.js && gulp build",
-    "dev": "gulp"
+    "dev": "gulp",
+    "postinstall": "npm run build"
   },
   "author": "",
   "license": "ISC",
@@ -15,12 +16,12 @@
   },
   "dependencies": {
     "clean-css": "^4.2.3",
+    "express": "^4.17.1",
     "fibers": "^5.0.0",
     "gulp": "^4.0.2",
     "gulp-postcss": "^8.0.0",
-    "gulp-sass": "^4.1.0",
-    "lambda-rate-limiter": "^3.0.1",
+    "gulp-sass": "^5.0.0",
     "postcss-clean": "^1.1.0",
-    "sass": "^1.26.5"
+    "sass": "^1.43.5"
   }
 }

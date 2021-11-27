@@ -16,7 +16,7 @@ $action-size: rem( 88 );
     font-size: rem(40);
     width: 100%;
 
-    @media ( max-width: em( 374 / 16 ) ) {
+    @media ( max-width: em( math.div(374, 16) ) ) {
       & {
         font-size: rem( 30 );
       }

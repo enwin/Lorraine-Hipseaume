@@ -1,16 +1,20 @@
 import { dest, src } from 'gulp';
-import sass from 'gulp-sass';
-import Fiber from 'fibers';
+import gulpSass from 'gulp-sass';
+// import Fiber from 'fibers';
 import compiler from 'sass';
 import postcss from 'gulp-postcss';
 import clean from 'postcss-clean';
 // import autoprefixer from 'autoprefixer';
 
-sass.compiler = compiler;
+// sass.compiler = compiler;
+
+const sass = gulpSass(compiler);
 
 const style = () => {
   return src('./src/*.scss')
-    .pipe(sass({ fiber: Fiber }).on('error', sass.logError))
+    .pipe(sass({
+      precision: 10
+    }).on('error', sass.logError))
     .pipe(
       postcss([
         // autoprefixer(),
@@ -19,7 +23,7 @@ const style = () => {
         }),
       ]),
     )
-    .pipe(dest('./.dist'));
+    .pipe(dest('./dist'));
 };
 
 export default style;
