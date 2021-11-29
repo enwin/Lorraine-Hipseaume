@@ -11,7 +11,8 @@ app.use(helmet({
   contentSecurityPolicy: {
     useDefaults: true,
     directives: {
-      "script-src": ["'self'", "*.withcabin.com"],
+      "script-src": ["'self'", "scripts.withcabin.com"],
+      "default-src": ["'self'", "ping.withcabin.com"],
     },
   }
 }));
