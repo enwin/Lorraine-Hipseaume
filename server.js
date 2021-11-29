@@ -7,7 +7,14 @@ const ip = process.env.IP || '0.0.0.0';
 const data = require('./functions/data.js');
 
 // app.disable('x-powered-by');
-app.use(helmet());
+app.use(helmet({
+  contentSecurityPolicy: {
+    useDefaults: true,
+    directives: {
+      "script-src": ["'self'", "*.withcabin.com"],
+    },
+  }
+}));
 
 app.use(express.static('./dist', {
   extensions: ['html']
