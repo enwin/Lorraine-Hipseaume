@@ -1,11 +1,13 @@
 const express = require('express');
+const helmet = require("helmet");
 const app = express()
 const port = process.env.PORT || 3000;
 const ip = process.env.IP || '0.0.0.0';
 
 const data = require('./functions/data.js');
 
-app.disable('x-powered-by');
+// app.disable('x-powered-by');
+app.use(helmet());
 
 app.use(express.static('./dist', {
   extensions: ['html']
